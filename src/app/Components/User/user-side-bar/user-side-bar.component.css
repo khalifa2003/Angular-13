@@ -1,0 +1,26 @@
+.sidebar {
+  min-height: 660px;
+  background-color: var(--gray-color);
+  border-radius: 21px;
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0;
+}
+
+.admin-side-text {
+  color: var(--yellow-color);
+  font-size: 15px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.admin-side-text:hover {
+  background-color: #272727;
+  color: var(--yellow-color);
+  font-size: 15.5px;
+  transition: 0.3s;
+}
+.admin-content-text {
+  color: var(--yellow-alt-color);
+  font-size: 20px;
+}

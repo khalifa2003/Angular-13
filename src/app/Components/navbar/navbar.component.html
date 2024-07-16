@@ -1,0 +1,166 @@
+<nav class="navbar navbar-expand-lg">
+  <div class="container-lg">
+    <a class="navbar-brand" class="logo" routerLink="/home">
+      <img src="../../../assets/logo.ico" alt="Logo" />
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a
+            routerLink="/home"
+            class="nav-link"
+            routerLinkActive="active"
+            aria-current="page"
+            >Home</a
+          >
+        </li>
+
+        <li class="nav-item" *ngIf="isAdmin">
+          <a
+            routerLink="/admin/id/allproducts"
+            class="nav-link"
+            routerLinkActive="active"
+            >Admin</a
+          >
+        </li>
+
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="true"
+          >
+            Categories
+          </a>
+          <ul class="dropdown-menu" *ngIf="listOfCategories.length > 0">
+            <li *ngFor="let cat of listOfCategories">
+              <a
+                class="dropdown-item"
+                (mouseover)="getSubcategories(cat._id)"
+                (click)="getProductByCategory(cat)"
+              >
+                {{ cat.name }} &raquo;
+              </a>
+              <ul class="dropdown-menu dropdown-submenu">
+                <li *ngFor="let sub of listOfSubcategories">
+                  <a
+                    class="dropdown-item"
+                    (click)="getProductBySubCategory(sub)"
+                    >{{ sub.name }}</a
+                  >
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+
+        <li class="nav-item" *ngIf="isLogged">
+          <a
+            routerLink="/user/id/cart"
+            class="nav-link"
+            routerLinkActive="active"
+            aria-disabled="true"
+            class="nav-cart nav-link"
+            ><i class="bi bi-cart2"></i>
+            <p>Cart</p>
+          </a>
+        </li>
+
+        <li class="nav-item" *ngIf="!isLogged">
+          <a routerLink="/login" class="nav-link" routerLinkActive="active"
+            >Login<i class="fa fa-user"></i
+          ></a>
+        </li>
+
+        <li class="nav-item dropdown" *ngIf="isLogged">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <i class="bi bi-person-circle nav-profile"></i>
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a routerLink="user/id/dashboard" class="dropdown-item"
+                ><i class="bi bi-card-checklist"></i> Dashboard
+              </a>
+            </li>
+            <li>
+              <a routerLink="user/id/allorders" class="dropdown-item"
+                ><i class="bi bi-card-checklist"></i> Orders
+              </a>
+            </li>
+            <li>
+              <a routerLink="user/id/addresses" class="dropdown-item"
+                ><i class="bi bi-geo-alt"></i> Addresses
+              </a>
+            </li>
+            <li>
+              <a routerLink="user/id/profile" class="dropdown-item"
+                ><i class="bi bi-person-circle"></i> Profile
+              </a>
+            </li>
+            <li>
+              <a routerLink="user/id/favoriteproducts" class="dropdown-item"
+                ><i class="bi bi-person-circle"></i> Favorite
+              </a>
+            </li>
+            <li>
+              <a href="#" (click)="logout()" class="dropdown-item">
+                <i class="bi bi-box-arrow-right"></i> Logout</a
+              >
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+      <div class="d-flex" role="search">
+        <input
+          type="text"
+          class="form-control me-2"
+          placeholder="Search"
+          aria-label="Search"
+          [(ngModel)]="searchTerm"
+          (input)="onSearch()"
+        />
+        <a (click)="searchTerm = ''">
+          <button (click)="reloadPage()" class="btn btn-outline-success">
+            Search
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div *ngIf="searchResults.length > 0" class="search-results">
+  <ul>
+    <li *ngFor="let product of searchResults">
+      <a
+        (click)="searchTerm.value = ''"
+        routerLink="/products/{{ product._id }}"
+      >
+        <img [src]="product.images[0]" alt="{{ product.title }}" />
+        <div>
+          <h4>{{ product.title }}</h4>
+        </div>
+      </a>
+    </li>
+  </ul>
+</div>

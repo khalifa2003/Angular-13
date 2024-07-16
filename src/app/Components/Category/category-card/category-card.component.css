@@ -1,0 +1,13 @@
+.image-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+.image-container img {
+  height: 150px;
+}
+.image-container a {
+  margin-bottom: 20px;
+  color: var(--yellow-color);
+}

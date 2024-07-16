@@ -1,0 +1,88 @@
+<div class="container shopping-cart col-12">
+  <div class="cart-items col-md-8 col-sm-12">
+    <div class="cart-item" *ngFor="let item of cart.cartItems; index as index">
+      <img [src]="item.product.images[0]" alt="a" />
+      <div class="item-details">
+        <p class="product-name">{{ item.product.title }}</p>
+        <p class="price">Price: {{ item.product.price }} EGP</p>
+        <div class="quantity">
+          <button
+            class="quantity-button"
+            (click)="removeOne(item._id, +item.quantity)"
+          >
+            -
+          </button>
+          <input type="text" [value]="item.quantity" />
+          <button
+            class="quantity-button"
+            (click)="addOne(item._id, +item.quantity)"
+          >
+            +
+          </button>
+        </div>
+        <p class="subtotal">
+          Total: {{ item.product.price * item.quantity }} EGP
+        </p>
+        <span class="close" (click)="openModel(item._id)">&times;</span>
+      </div>
+    </div>
+    <button class="btn btn-danger mt-2" (click)="deleteCart()">
+      Clear Cart
+    </button>
+  </div>
+  <div class="col-md-3 col-sm-12">
+    <div class="cart-summary">
+      <h3>Cart Totals</h3>
+      <p>
+        Subtotal: <span>{{ cart.totalCartPrice }} EGP</span>
+      </p>
+      <p>Shipping: <span>120.00 EGP</span></p>
+      <p>
+        Total: <span>{{ cart.totalCartPrice + 120 }} EGP</span>
+      </p>
+      <button class="checkout-button">PROCEED TO CHECKOUT</button>
+    </div>
+    <div class="return">
+      <h3>Delivery & Return</h3>
+      <ul>
+        <li>
+          <input type="checkbox" checked />
+          <i></i>
+          <h2>When Do I Receive My Order?</h2>
+          <p>We ship with Mylerz And delivery time 2 – 4 days</p>
+        </li>
+        <li>
+          <input type="checkbox" checked />
+          <i></i>
+          <h2>30 Days Return</h2>
+          <p>
+            You have 30 days to make a return request after your order has been
+            delivered.(If Your Product has any issue)
+          </p>
+        </li>
+        <li>
+          <input type="checkbox" checked />
+          <i></i>
+          <h2>Refund Request</h2>
+          <p>
+            You have 30 days to make a refund request if you product has any
+            issue as Purchase Coupon, Vodafone Cash or Instapay after your order
+            has been delivered. You Have also 14 Days to make return if your
+            product in the same condition when it delivered to you Contact us
+            Via Whatsapp : 01143490777 and shen your order number
+          </p>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="modall" [class.show]="showModal">
+    <div class="modall-content">
+      <span class="close" (click)="closeModal()">&times;</span>
+      <h2>Are You Sure You Want ?</h2>
+      <div class="modall-buttons">
+        <button (click)="closeModal()" class="btn btn-success mx-2">No</button>
+        <button (click)="deleteItem()" class="btn btn-danger">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>

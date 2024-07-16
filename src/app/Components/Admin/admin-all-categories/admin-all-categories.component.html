@@ -1,0 +1,20 @@
+<div class="row" *ngIf="listOfCategories.length > 0">
+  <div
+    class="col-lg-2 col-md-3 col-xs-4 col-sm-6 d-flex justify-content-center flex-column m-2 cat-card"
+    *ngFor="let category of listOfCategories"
+  >
+    <img src="{{ category.image }}" alt="" width="150px" />
+    <p>{{ category.name }}</p>
+    <button (click)="openModal(category)" class="btn btn-danger">Delete</button>
+  </div>
+  <div class="modal" [class.show]="showModal">
+    <div class="modal-content">
+      <span class="close" (click)="closeModal()">&times;</span>
+      <h2>Are You Sure You Want To Delete "{{ selectedCategory.name }}" Category?</h2>
+      <div class="moda">
+        <button (click)="handleNo()" class="btn btn-success mx-2">No</button>
+        <button (click)="delete(selectedCategory._id)" class="btn btn-danger">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>

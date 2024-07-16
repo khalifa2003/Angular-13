@@ -1,0 +1,119 @@
+<body>
+  <div class="register-container">
+    <h1>Register</h1>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+
+      <div class="form-group">
+        <label for="fname">First Name</label>
+        <input
+          type="text"
+          formControlName="fname"
+          [ngClass]="{ 'is-invalid': f['fname'].touched && f['fname'].invalid }"
+          id="fname"
+          name="fname"
+          required
+        />
+        <div
+          *ngIf="f['fname'].touched && f['fname'].invalid"
+          class="invalid-feedback"
+        >
+          <div *ngIf="f['fname'].errors?.['required']">First Name Required</div>
+          <div *ngIf="f['fname'].errors?.['fname']">Incorect Name</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="lname">Last Name</label>
+        <input
+          type="text"
+          formControlName="lname"
+          [ngClass]="{ 'is-invalid': f['lname'].touched && f['lname'].invalid }"
+          id="lname"
+          name="lname"
+          required
+        />
+        <div
+          *ngIf="f['lname'].touched && f['lname'].invalid"
+          class="invalid-feedback"
+        >
+          <div *ngIf="f['lname'].errors?.['required']">Last Name Required</div>
+          <div *ngIf="f['lname'].errors?.['lname']">Incorect Name</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          formControlName="email"
+          id="email"
+          name="email"
+          [ngClass]="{ 'is-invalid': f['email'].touched && f['email'].invalid }"
+        />
+        <div
+          *ngIf="f['email'].touched && f['email'].invalid"
+          class="invalid-feedback"
+        >
+          <div *ngIf="f['email'].errors?.['required']">Email Required</div>
+          <div *ngIf="f['email'].errors?.['email']">Incorect Email</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          formControlName="password"
+          type="password"
+          id="password"
+          name="password"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid': f['password'].touched && f['password'].invalid
+          }"
+        />
+        <div
+          *ngIf="f['password'].touched && f['password'].invalid"
+          class="invalid-feedback"
+        >
+          Password Required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="passwordConfirm">Confirm password</label>
+        <input
+          formControlName="passwordConfirm"
+          type="password"
+          id="passwordConfirm"
+          name="passwordConfirm"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid':
+              f['passwordConfirm'].touched && f['passwordConfirm'].invalid
+          }"
+        />
+        <div
+          *ngIf="f['passwordConfirm'].touched && f['passwordConfirm'].invalid"
+          class="invalid-feedback"
+        >
+          Confirm Password
+        </div>
+      </div>
+
+      <div class="form-group">
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="registerForm.invalid"
+        >
+          Register
+        </button>
+      </div>
+
+      <div class="login-link">
+        <a href="/login">Already have an account? Login here</a>
+      </div>
+    </form>
+  </div>
+</body>

@@ -1,0 +1,36 @@
+<div class="admin-content-text">Addresses</div>
+<hr />
+<div
+  class="address-card d-flex justify-content-between mb-3"
+  *ngFor="let item of addresses"
+>
+  <div class="address-details">
+    <p><strong>State:</strong> {{ item.state }}</p>
+    <p><strong>Country / Region:</strong> Egypt</p>
+    <p><strong>First name:</strong> {{ item.fname }}</p>
+    <p><strong>Last name:</strong> {{ item.lname }}</p>
+    <p><strong>Address:</strong> {{ item.address }}</p>
+    <p><strong>Phone Number:</strong>{{ item.phone }}</p>
+    <p><strong>Postcode:</strong> {{ item.postalCode }}</p>
+    <p><strong>Email address:</strong> {{ item.email }}</p>
+    <p><strong>City:</strong>{{ item.city }}</p>
+  </div>
+  <div>
+    <button type="button" (click)="openModal(item._id)">Delete Address</button>
+  </div>
+</div>
+
+<a routerLink="/user/id/addaddress" class="row mx-1 mt-3">
+  <button class="btn btn-success w=100">Add New Address</button>
+</a>
+
+<div class="modal" [class.show]="showModal">
+  <div class="modal-content">
+    <span class="close" (click)="closeModal()">&times;</span>
+    <h2>Are You Sure ?</h2>
+    <div>
+      <button (click)="handleNo()" class="btn btn-success mx-2">No</button>
+      <button (click)="delete()" class="btn btn-danger">Yes</button>
+    </div>
+  </div>
+</div>

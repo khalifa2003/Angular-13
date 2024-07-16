@@ -1,0 +1,57 @@
+<div class="admin-content-text">Add New Category</div>
+<hr />
+<form (submit)="onSubmit()" class="row d-flex" [formGroup]="categoryForm">
+  <div class="form-group">
+    <input
+      type="text"
+      required
+      class="input-form"
+      placeholder="Category Name"
+      id="name"
+      style="width: 50%"
+      formControlName="name"
+      [ngClass]="{ 'is-invalid': f['name'].touched && f['name'].invalid }"
+    />
+    <div
+      *ngIf="f['name'].touched && f['name'].invalid"
+      class="invalid-feedback"
+    >
+      <div *ngIf="f['name'].errors?.['required']">Category Name Required</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <textarea
+      rows="6"
+      id="description"
+      placeholder="Category Description"
+      formControlName="description"
+      style="width: 50%"
+    ></textarea>
+  </div>
+
+  <div class="d-flex justify-content-center align-items-center form-group w-50">
+    <input
+      id="image"
+      type="file"
+      (change)="onFileSelected($event)"
+      formControlName="image"
+      name="image"
+      [ngClass]="{ 'is-invalid': f['image'].touched && f['image'].invalid }"
+    />
+    <div
+      *ngIf="f['image'].touched && f['image'].invalid"
+      class="invalid-feedback"
+    >
+      <div *ngIf="f['image'].errors?.['required']">Brand image Required</div>
+    </div>
+  </div>
+
+    <button
+      [disabled]="categoryForm.invalid"
+      type="submit"
+      class="btn btn-success mt-2"
+    >
+      Create
+    </button>
+</form>

@@ -1,0 +1,17 @@
+.slider {
+  background-image: url(../../../../assets/stars.png);
+  height: calc(100vh - 74px);
+  background-color: var(--gray-alt-color);
+}
+.slide {
+  height: calc(100vh - 74px);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 65%;
+}

@@ -1,0 +1,14 @@
+.image-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.image-container img {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+}
+.image-container a {
+  margin-bottom: 20px;
+  color: var(--yellow-color);
+}

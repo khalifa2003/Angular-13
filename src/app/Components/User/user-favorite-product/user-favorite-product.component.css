@@ -1,0 +1,32 @@
+.favorites-container {
+  background-color: var(--gray-color);
+  margin: 20px;
+  padding: 20px;
+  border-radius: 18px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 1s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: var(--yellow-alt-color);
+}
+
+.product-card {
+  transition: transform 0.3s;
+}
+
+.product-card:hover {
+  transform: translateY(-10px);
+}
+.cards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}

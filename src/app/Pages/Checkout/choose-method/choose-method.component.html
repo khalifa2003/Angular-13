@@ -1,0 +1,67 @@
+<div>
+  <div class="admin-content-text pt-5">اختر طريقة الدفع</div>
+  <div class="user-address-card my-3 px-3">
+    <div class="d-flex justify-content-between">
+      <div xs="12" class="my-2">
+        <input
+          onChange="changeMathoud"
+          style="cursor: pointer"
+          name="group"
+          id="group1"
+          type="radio"
+          value="CARD"
+          class="mt-2"
+        />
+        <label style="cursor: pointer" class="mx-2" for="group1">
+          الدفع عن طريق البطاقه الائتمانية
+        </label>
+      </div>
+    </div>
+
+    <div class="mt-2">
+      <div xs="12" class="d-flex">
+        <input
+          style="cursor: pointer"
+          onChange="changeMathoud"
+          name="group"
+          id="group2"
+          type="radio"
+          value="CASH"
+          class="mt-2"
+        />
+        <label style="cursor: pointer" class="mx-2" for="group2">
+          الدفع عند الاستلام
+        </label>
+      </div>
+    </div>
+
+    <div class="mt-2">
+      <div xs="4" class="d-flex">
+        <select
+          name="address"
+          id="address"
+          class="select mt-1 px-2"
+          onChange="handelChooseAddress"
+        >
+          <option value="0">اختر عنوان للشحن</option>
+          res.data ? (res.data.map((item, index) => return
+          <option key="item._id" value="item._id">item.alias</option>
+          )) :
+          <option key="0" value="0">لا يوجد عنوانين مسجلة</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div xs="12" class="d-flex justify-content-end">
+      <div class="product-price d-inline border">
+        totalCartPriceAfterDiscount >= 1 ? `$totalCartPrice جنيه ... بعد الخصم
+        $totalCartPriceAfterDiscount ` : `$totalCartPrice جنيه`
+      </div>
+      <div onClick="handelPay" class="product-cart-add px-3 pt-2 d-inline me-2">
+        اتمام الشراء
+      </div>
+    </div>
+  </div>
+</div>

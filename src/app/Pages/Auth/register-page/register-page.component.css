@@ -1,0 +1,81 @@
+
+body {
+  background: var(--gray-alt-color);
+  background-image: url('../../../../assets/stars.png');
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.register-container {
+  background-image: url('../../../../assets/stars.png');
+  background: var(--gray-color);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  width: 100%;
+  max-width: 400px;
+  box-sizing: border-box;
+}
+.register-container h1 {
+  color: var(--yellow-alt-color);
+  margin-bottom: 20px;
+  font-size: 24px;
+  text-align: center;
+}
+.register-container form {
+  display: flex;
+  flex-direction: column;
+}
+.register-container label {
+  margin-bottom: 5px;
+  color: var(--yellow-color);
+}
+.register-container input {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #333;
+  border-radius: 4px;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
+  background: #2C2C2C;
+  color: #E0E0E0;
+}
+.register-container input:focus {
+  border-color: var(--yellow-color);
+}
+.register-container button {
+  padding: 10px;
+  background: var(--yellow-color);
+  border: none;
+  color: #000;
+  font-weight: bold;
+  width: 100%;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.register-container button:hover {
+  background: var(--yellow-alt-color);
+}
+.register-container .login-link {
+  text-align: center;
+  margin-top: 10px;
+}
+.register-container .login-link a {
+  color: var(--yellow-alt-color);
+  text-decoration: none;
+}
+.register-container .login-link a:hover {
+  text-decoration: underline;
+}
+@media (max-width: 480px) {
+  .register-container {
+      padding: 15px;
+  }
+  .register-container h1 {
+      font-size: 20px;
+  }
+}

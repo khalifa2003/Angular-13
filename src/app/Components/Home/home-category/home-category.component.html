@@ -1,0 +1,49 @@
+<div class="title-holder">
+  <div class="sub-title">Categories</div>
+</div>
+
+<app-loading *ngIf="!slides"></app-loading>
+
+<div
+  class="carousel slide category-card-container"
+  data-bs-ride="carousel"
+  id="myCarousel"
+  *ngIf="slides"
+>
+  <div class="carousel-inner">
+    <div
+      *ngFor="let slide of slides; let i = index"
+      [class.active]="i === 0"
+      class="carousel-item"
+    >
+      <div class="row cards-container">
+        <a
+          class="col-md-2 all-card"
+          *ngFor="let item of slide.items"
+          (click)="getProduct(item)"
+        >
+          <img [src]="item.image" class="category-card-img" alt="..." />
+        </a>
+      </div>
+    </div>
+
+    <button
+      class="carousel-control-prev"
+      type="button"
+      data-bs-target="#myCarousel"
+      data-bs-slide="prev"
+    >
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button
+      class="carousel-control-next"
+      type="button"
+      data-bs-target="#myCarousel"
+      data-bs-slide="next"
+    >
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>

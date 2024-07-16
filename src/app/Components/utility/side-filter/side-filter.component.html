@@ -1,0 +1,96 @@
+<div class="filter-sidebar">
+  <div class="filter-group">
+    <button
+      class="btn btn-primary w-100"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#availableInStores"
+      aria-expanded="false"
+      aria-controls="availableInStores"
+    >
+      Available In Stores
+    </button>
+    <div class="collapse" id="availableInStores" class="checkbox-container">
+      <input type="checkbox" name="stock" />
+      <label>In Stock</label>
+    </div>
+  </div>
+
+  <div class="filter-group">
+    <button
+      class="btn btn-primary w-100 button"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#catgory"
+      aria-expanded="false"
+      aria-controls="catgory"
+    >
+      <span> Categories </span>
+    </button>
+
+    <div class="collapse" id="catgory" class="checkbox-container">
+      <div
+        class="collapse"
+        id="catgory"
+        class="checkbox-container"
+        *ngFor="let category of categories"
+      >
+        <label>
+          <input
+            type="checkbox"
+            [value]="category._id"
+            (change)="onCategoryChange($event)"
+          />
+          {{ category.name }}
+        </label>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <button
+        class="btn btn-primary w-100"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#brand"
+        aria-expanded="false"
+        aria-controls="brand"
+      >
+        Brands
+      </button>
+
+      <div
+        class="collapse"
+        id="brand"
+        *ngFor="let brand of brands"
+        class="checkbox-container"
+      >
+        <label>
+          <input
+            type="checkbox"
+            [value]="brand._id"
+            (change)="onBrandChange($event)"
+          />
+          <img src="{{ brand.image }}" alt="" style="justify-self: end" />
+          {{ brand.name }}
+        </label>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <button
+        class="btn btn-primary w-100 button"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#subcatgory"
+        aria-expanded="false"
+        aria-controls="subcatgory"
+      >
+        <span> Subcategories </span>
+      </button>
+      <div class="collapse" id="subcatgory" class="checkbox-container">
+        <input type="checkbox" name="subcatgory" value="Asus" />
+        <label> subcatgory.name </label>
+      </div>
+    </div>
+  </div>
+</div>

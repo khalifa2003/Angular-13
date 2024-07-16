@@ -1,0 +1,131 @@
+.profile-container {
+  background-color: var(--gray-color);
+  padding: 20px;
+  margin: 21px;
+  border-radius: 18px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.profile-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.profile-picture {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  border-radius: 50%;
+  margin-right: 20px;
+  background-color: #000;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.profile-picture:hover {
+  transform: scale(1.1);
+  transition: 0.3s;
+  opacity: 0.6;
+}
+.img-container:hover::after {
+  display: block;
+}
+.user-info {
+  flex: 1;
+  color: rgb(255, 230, 0);
+}
+strong {
+  color: var(--yellow-alt-color);
+}
+.profile-body {
+  margin-top: 20px;
+}
+h3 {
+  margin-bottom: 10px;
+  color: var(--gray-alt-color);
+}
+.address-card {
+  background-color: var(--gray-alt-color);
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.address-details {
+  flex: 1;
+}
+.address-details p {
+  margin: 5px 0;
+}
+p {
+  color:rgb(255, 255, 0);
+}
+.edit-address-button:hover {
+  background-color: #218838;
+}
+/* -------------------------------------------- */
+
+.change-profile-container {
+  transform: translate(-50%, -50%);
+  background-color: #0000004d;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  left: 50%;
+  top: 50%;
+}
+.profile-form {
+  width: 40%;
+  height: 150px;
+  background-color: var(--gray-alt-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  border-radius: 10px;
+}
+.profile-form .btn-close {
+  align-self: flex-end;
+}
+.profile-form .btn-close:hover {
+  color: blue;
+}
+.profile-form input {
+  padding: 10px;
+}
+
+.custom-file-input::-webkit-file-upload-button {
+  visibility: hidden;
+}
+.custom-file-input::before {
+  content: "Select Image";
+  display: inline-block;
+  border: 1px solid #999;
+  border-radius: 3px;
+  padding: 5px 8px;
+  outline: none;
+  white-space: nowrap;
+  color: #eee;
+  background-color: var(--gray-color);
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 12pt;
+  transition: 0.3s;
+}
+.custom-file-input:hover::before {
+  border-color: var(--yellow-color);
+  background-color: var(--yellow-color);
+  color: blue;
+}
+/* ---------------------------------------- */
+
+.user-info p:hover {
+  font-size: 17px;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: 0.3s;
+}

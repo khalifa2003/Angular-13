@@ -1,0 +1,73 @@
+<div class="admin-content-text">Add New Brand</div>
+<hr />
+<form (submit)="onSubmit()" class="row d-flex" [formGroup]="brandForm">
+  <div class="form-group">
+    <input
+      type="text"
+      required
+      class="input-form"
+      placeholder="Brand Name"
+      id="name"
+      style="width: 50%"
+      formControlName="name"
+      [ngClass]="{ 'is-invalid': f['name'].touched && f['name'].invalid }"
+    />
+    <div
+      *ngIf="f['name'].touched && f['name'].invalid"
+      class="invalid-feedback"
+    >
+      <div *ngIf="f['name'].errors?.['required']">Brand Name Required</div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <textarea
+      rows="6"
+      id="description"
+      placeholder="Brand Description"
+      formControlName="description"
+      style="width: 50%"
+    ></textarea>
+  </div>
+
+  <div class="d-flex justify-content-center align-items-center form-group w-50">
+    <label for="image">
+      <input
+        id="image"
+        type="file"
+        (change)="onFileSelected($event)"
+        formControlName="image"
+        name="image"
+        [ngClass]="{ 'is-invalid': f['image'].touched && f['image'].invalid }"
+      />
+    </label>
+    <div
+      *ngIf="f['image'].touched && f['image'].invalid"
+      class="invalid-feedback"
+    >
+      <div *ngIf="f['image'].errors?.['required']">Brand image Required</div>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-center m-1 w-50">
+    <button
+      [disabled]="brandForm.invalid"
+      type="submit"
+      class="btn btn-success mt-2"
+    >
+      Create
+    </button>
+  </div>
+</form>
+
+<!-- ------------------------------ -->
+
+<div class="modal" [class.show]="showModal">
+  <div class="modal-content">
+    <span class="close" (click)="closeModal()">&times;</span>
+    <h2>Product Created Successfully</h2>
+    <div class="modal-buttons">
+      <button (click)="handleNo()" class="btn btn-success">Ok</button>
+    </div>
+  </div>
+</div>

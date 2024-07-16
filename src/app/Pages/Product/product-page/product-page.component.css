@@ -1,0 +1,13 @@
+.container-lg {
+  background-image: url(../../../../assets/stars.png);
+
+}
+.product-page {
+  display: flex;
+  flex-direction: row;
+}
+@media only screen and (max-width: 900px) {
+  .product-page {
+    flex-direction: column;
+  }
+}

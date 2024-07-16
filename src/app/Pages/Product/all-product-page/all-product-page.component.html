@@ -1,0 +1,61 @@
+<app-loading *ngIf="listOfallProducts.length == 0"></app-loading>
+<div class="container-lg all-container">
+  <app-side-filter
+    *ngIf="listOfAllBrands.length > 0"
+    [categories]="listOfAllCategories"
+    [brands]="listOfAllBrands"
+    class="col-2 side-filter"
+  ></app-side-filter>
+
+  <div *ngIf="listOfallProducts.length == 0" class="col-10">
+    Sorry there's No Results...
+  </div>
+
+  <div *ngIf="listOfallProducts.length != 0" class="card-container">
+    <div class="nav-filter">
+      <!-- <div>
+        Show:
+        <button (click)="setItemsPerPage(9)" class="btn">9</button>
+        <button (click)="setItemsPerPage(12)" class="btn">12</button>
+        <button (click)="setItemsPerPage(18)" class="btn">18</button>
+        <button (click)="setItemsPerPage(24)" class="btn">24</button>
+      </div> -->
+      <form
+        class="d-flex"
+        (submit)="filterPrice()"
+        [formGroup]="filterPriceForm"
+      >
+        <input
+          type="number"
+          class="price-input"
+          placeholder="From"
+          formControlName="min"
+        />
+        <input
+          type="number"
+          class="price-input"
+          placeholder="High"
+          formControlName="max"
+        />
+        <button type="submit" class="btn btn-warning filter">Filter</button>
+      </form>
+      <div class="sort">
+        <label for="sort">Sort by: </label>
+        <select id="sort" [(ngModel)]="sort" (ngModelChange)="onFilterChange()">
+          <option value="relevance">Relevance</option>
+          <option value="popularity">Sort by popularity</option>
+          <option value="rating">Sort by average rating</option>
+          <option value="latest">Sort by latest</option>
+          <option value="priceAsc">Sort by price: low to high</option>
+          <option value="priceDesc">Sort by price: high to low</option>
+        </select>
+      </div>
+    </div>
+
+    <app-product-card
+      class="d-flex d justify-content-center mt-3"
+      *ngFor="let prod of listOfallProducts"
+      [product]="prod"
+    ></app-product-card>
+  </div>
+</div>

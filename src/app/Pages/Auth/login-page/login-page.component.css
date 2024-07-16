@@ -1,0 +1,84 @@
+.containerr {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: var(--gray-alt-color);
+  background-image: url(../../../../assets/stars.png);
+  color: var(--yellow-alt-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.login-container {
+  background: #1e1e1e;
+  padding: 20px;
+  border-radius: 8px;
+  background-image: url(../../../../assets/stars.png);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  width: 100%;
+  max-width: 400px;
+  box-sizing: border-box;
+}
+.login-container h1 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: var(--yellow-alt-color);
+  text-align: center;
+}
+.login-container form {
+  display: flex;
+  flex-direction: column;
+}
+.login-container label {
+  color: var(--yellow-color);
+  margin-bottom: 5px;
+}
+.login-container input {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #333;
+  border-radius: 4px;
+  font-size: 16px;
+  width: 100%;
+  box-sizing: border-box;
+  background: #2c2c2c;
+  color: #e0e0e0;
+}
+.login-container input:focus {
+  border-color: var(--yellow-color);
+}
+.login-container button {
+  padding: 10px;
+  background: yellow;
+  border: none;
+  color: #000;
+  font-weight: bold;
+  width: 100%;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.login-container button:hover {
+  background: var(--yellow-alt-color);
+}
+.login-container .forgot-password {
+  text-align: center;
+  margin-top: 10px;
+}
+.login-container .forgot-password a {
+  color: var(--yellow-alt-color);
+  text-decoration: none;
+}
+.login-container .forgot-password a:hover {
+  text-decoration: underline;
+}
+@media (max-width: 480px) {
+  .login-container {
+    padding: 15px;
+  }
+  .login-container h1 {
+    font-size: 20px;
+  }
+}

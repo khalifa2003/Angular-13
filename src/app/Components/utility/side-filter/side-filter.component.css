@@ -1,0 +1,50 @@
+.filter-sidebar {
+  background-color: var(--gray-alt-color);
+  padding: 10px;
+  margin-top: 50px;
+  border-radius: 10px;
+}
+
+.filter-group {
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.filter-group .btn {
+  text-align: left;
+}
+
+.button {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+.button::after {
+  content: "^";
+  font-weight: bold;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+.button:disabled::after {
+  content: "^";
+  transform: rotateX(180deg);
+  top: 7px;
+  transition: 1s;
+}
+.checkbox-container {
+  margin: 8px 10px 0;
+  color: var(--yellow-color);
+}
+.checkbox-container input {
+  margin: 0 10px 0 0;
+}
+.checkbox-container label {
+  text-wrap: nowrap;
+}
+.checkbox-container img {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-right: 10px;
+}

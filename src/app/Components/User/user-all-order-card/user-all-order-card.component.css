@@ -1,0 +1,23 @@
+/* user order */
+.user-order {
+  height: 100%;
+  width: 100%;
+  border-radius: 7px;
+  background-color: #ffffff;
+  box-shadow: 0 1px 2px 0 rgba(151, 151, 151, 0.5);
+}
+.order-title {
+  color: #272727;
+  font-family: "Almarai";
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.stat {
+  color: #979797;
+  font-family: Cairo;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: 30px;
+  text-align: right;
+}

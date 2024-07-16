@@ -1,0 +1,56 @@
+.review-section {
+  margin-top: 30px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: var(--gray-alt-color);
+}
+.review-section h2 {
+  margin-bottom: 20px;
+  color: var(--yellow-alt-color);
+}
+.review {
+  margin-bottom: 20px;
+  border-bottom: 1px solid #eee;
+}
+.review p {
+  margin: 5px 0;
+  color: var(--yellow-color);
+}
+.review-form {
+  margin-top: 20px;
+}
+
+.review-form h3 {
+  margin-bottom: 10px;
+  color: var(--yellow-alt-color);
+}
+
+.review-form label {
+  color: var(--yellow-alt-color);
+  display: block;
+  margin-top: 10px;
+}
+
+.review-form select,
+.review-form textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  background-color: var(--gray-color);
+  color: #fff;
+  max-width: 600px;
+}
+
+.review-form button {
+  margin-top: 10px;
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: black;
+  border: none;
+  cursor: pointer;
+  display: block;
+}
+assa .review-form button:hover {
+  background-color: #0056b3;
+}

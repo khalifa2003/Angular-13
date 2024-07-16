@@ -1,0 +1,65 @@
+<div class="containerr">
+  <div class="login-container">
+    <h1>Login</h1>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          formControlName="email"
+          id="email"
+          name="email"
+          [ngClass]="{ 'is-invalid': f['email'].touched && f['email'].invalid }"
+        />
+        <div
+          *ngIf="f['email'].touched && f['email'].invalid"
+          class="invalid-feedback"
+        >
+          <div *ngIf="f['email'].errors?.['required']">Email Required</div>
+          <div *ngIf="f['email'].errors?.['email']">Incorect Email</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          formControlName="password"
+          type="password"
+          id="password"
+          name="password"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid': f['password'].touched && f['password'].invalid
+          }"
+        />
+        <div
+          *ngIf="f['password'].touched && f['password'].invalid"
+          class="invalid-feedback"
+        >
+          Password Required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="loginForm.invalid"
+        >
+          Login
+        </button>
+      </div>
+
+      <div class="forgot-password d-flex justify-content-between">
+        <a routerLink="verify" routerLinkActive="router-link-active"
+          >Forgot Password?</a
+        >
+        <a routerLink="/register" routerLinkActive="router-link-active"
+          >Register</a
+        >
+      </div>
+    </form>
+  </div>
+</div>

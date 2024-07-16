@@ -1,0 +1,18 @@
+<div class="image-gallery">
+  <div class="main-image row">
+    <img
+      id="current-image"
+      class="current-image"
+      src="{{ currentImage }}"
+      alt="Product Image"
+    />
+  </div>
+  <div class="thumbnail-images">
+    <img
+      *ngFor="let image of gallery"
+      src="{{ image }}"
+      alt="Thumbnail Image"
+      (click)="changeImage(image)"
+    />
+  </div>
+</div>

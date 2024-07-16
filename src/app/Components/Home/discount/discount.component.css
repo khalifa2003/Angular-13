@@ -1,0 +1,32 @@
+.discount-backcolor {
+  display: flex;
+  align-items: center;
+  margin: 20px 0 0;
+  height: 170px;
+  text-align: center;
+  border-radius: 8px;
+  background: radial-gradient(circle, #b4880f 0%, #b8b837 100%, #a6a76a 100%);
+  animation: moveUpDown 1s linear infinite;
+}
+.discount-title {
+  color: #ffffff;
+  font-size: 21px;
+  font-weight: bold;
+  font-size: 40px;
+}
+.dicount-img {
+  max-height: 130px;
+  max-width: 80%;
+}
+
+@keyframes moveUpDown {
+  0% {
+      transform: translateY(-15px); /* Start from the bottom */
+  }
+  50% {
+      transform: translateY(-10px); /* Move to the top */
+  }
+  100% {
+      transform: translateY(-15px); /* Return to the bottom */
+  }
+}

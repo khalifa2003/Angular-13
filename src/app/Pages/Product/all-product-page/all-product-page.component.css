@@ -1,0 +1,67 @@
+.all-container {
+  background-image: url("../../../../assets/stars.png");
+  background-color: var(--gray-color);
+  align-items: flex-start;
+  display: flex;
+}
+.card-container {
+  background-image: url("../../../../assets/stars.png");
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  padding: 0 5px;
+  gap: 5px;
+}
+/* ----------------- */
+.nav-filter {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 20px;
+  border-bottom: 1px solid var(--yellow-color);
+  padding-bottom: 5px;
+}
+
+@media screen and (max-width: 600px) {
+  .nav-filter {
+    flex-direction: column;
+    gap: 5px;
+  }
+}
+.price-input {
+  max-width: 100px;
+  border-radius: 4px;
+  margin-right: 5px;
+  padding: 5px;
+  background-color: var(--gray-alt-color);
+  color: var(--yellow-color);
+  border: #000 solid 1px;
+}
+
+.sort label {
+  color: var(--yellow-alt-color);
+  font-size: 20px;
+}
+.sort label:hover {
+  color: var(--yellow-color);
+  transition: 0.3s;
+}
+.sort select {
+  max-width: 220px;
+  border-radius: 4px;
+  margin-right: 5px;
+  padding: 5px;
+  background-color: var(--gray-alt-color);
+  color: var(--yellow-color);
+  border: #000 solid 1px;
+}
+/* ------------------------------- */
+
+@media screen and (max-width: 600px) {
+  .side-filter {
+    display: none;
+  }
+}

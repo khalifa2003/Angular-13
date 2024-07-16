@@ -1,0 +1,51 @@
+<div class="product-card" *ngIf="product != undefined">
+  <div class="product-image">
+    <img src="{{ product.images[0] }}" alt="Product Image" />
+    <i *ngIf="!isInWishlist" class="bi bi-heart" (click)="addToWishlist()"></i>
+    <i
+      *ngIf="isInWishlist"
+      class="bi bi-heart-fill"
+      (click)="RemoveFromWishlist()"
+    ></i>
+  </div>
+  <div class="product-info">
+    <div class="title">
+      <h2 class="product-title">{{ product.title }}</h2>
+    </div>
+    <div class="product-footer">
+      <div class="d-flex flex-column">
+        <p class="product-price">{{ product.price }}EGP</p>
+        <div class="stars" *ngIf="product.ratingsAverage">
+          <ng-container *ngFor="let star of fullStars">
+            <div class="star full"></div>
+          </ng-container>
+          <div *ngIf="halfStar" class="star half"></div>
+          <ng-container *ngFor="let star of emptyStars">
+            <div class="star empty"></div>
+          </ng-container>
+        </div>
+      </div>
+
+      <div class="product-actions">
+        <button class="add-to-cart-btn" (click)="addToCart()">Add</button>
+        <button
+          class="view-details-btn"
+          routerLink="/products/{{ product._id }}"
+        >
+          View
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- --------------------------------------- -->
+<div class="modall" *ngIf="showModal">
+  <div class="modall-header">
+    <span class="modall-title">Product added to Cart</span>
+    <button class="close-btn" (click)="closeModal()">&times;</button>
+  </div>
+  <div class="modall-body">
+    <img [src]="product.images[0]" alt="" />
+    <a routerLink="/user/id/cart">{{ product.title }}</a>
+  </div>
+</div>

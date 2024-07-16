@@ -1,0 +1,11 @@
+<div class="container" style="min-height: 100vh">
+  <div class="admin-content-text mt-5">All Brands</div>
+  <hr />
+  <div class="d-flex flex-wrap">
+    <app-brand-card
+      class="col-xs-6 col-sm-6 col-md-3 col-lg-2"
+      *ngFor="let brand of brands"
+      [brand]="brand"
+    ></app-brand-card>
+  </div>
+</div>

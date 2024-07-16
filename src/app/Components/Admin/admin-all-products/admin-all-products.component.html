@@ -1,0 +1,18 @@
+<div class="admin-content-text">All Products Mangement</div>
+<hr />
+<div class="d-flex justify-content-center">
+  <input
+    type="text"
+    [(ngModel)]="searchTerm"
+    (input)="onSearch()"
+    class="search"
+    placeholder="Search"
+  />
+</div>
+<div class="row d-flex justify-content-around" *ngIf="products.length > 0">
+  <app-admin-all-products-card
+    class="col-lg-3 mx-2"
+    *ngFor="let prd of products"
+    [product]="prd"
+  ></app-admin-all-products-card>
+</div>
