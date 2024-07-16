@@ -7,7 +7,7 @@ import { Observable, map } from 'rxjs';
 })
 export class ProductService {
   APIURL: string =
-    'https://back-qedmh4xkr-khalifa2003s-projects.vercel.app/api/v1';
+    'https://node-js-git-main-khalifa2003s-projects.vercel.app/api/v1';
   constructor(private http: HttpClient) {}
 
   getAllProducts(): Observable<any> {

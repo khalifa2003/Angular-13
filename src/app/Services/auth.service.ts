@@ -8,7 +8,8 @@ import { IProduct } from '../Models/iproduct';
   providedIn: 'root',
 })
 export class AuthService {
-  APIURL: string = 'https://back-qedmh4xkr-khalifa2003s-projects.vercel.app/api/v1';
+  APIURL: string =
+    'https://node-js-git-main-khalifa2003s-projects.vercel.app/api/v1';
   private currentUserSubject: BehaviorSubject<any>;
   public currentUser: Observable<any>;
 
@@ -29,15 +30,13 @@ export class AuthService {
   }
 
   login(formdata: FormData) {
-    return this.http
-      .post<any>(`${this.APIURL}/auth/login`, formdata)
-      .pipe(
-        tap((user) => {
-          localStorage.setItem('currentUser', JSON.stringify(user));
-          this.currentUserSubject.next(user);
-          this.router.navigate(['/home']);
-        })
-      );
+    return this.http.post<any>(`${this.APIURL}/auth/login`, formdata).pipe(
+      tap((user) => {
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        this.currentUserSubject.next(user);
+        this.router.navigate(['/home']);
+      })
+    );
   }
 
   register(formdata: FormData) {
@@ -221,9 +220,7 @@ export class AuthService {
   }
 
   getReviews(productId: string): Observable<any> {
-    return this.http.get(
-      `${this.APIURL}/reviews?productId=${productId}`
-    );
+    return this.http.get(`${this.APIURL}/reviews?productId=${productId}`);
   }
   deleteReview(id: string): Observable<any> {
     const headers = new HttpHeaders({

@@ -6,8 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class CategoryService {
-  APIURL: string =
-    'https://back-qedmh4xkr-khalifa2003s-projects.vercel.app/api/v1';
+  APIURL: string = 'https://node-js-git-main-khalifa2003s-projects.vercel.app/api/v1';
   constructor(private http: HttpClient) {}
 
   getAllCategories(): Observable<any> {

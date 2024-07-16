@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class SubcategoryService {
   APIURL: string =
-    'https://back-qedmh4xkr-khalifa2003s-projects.vercel.app/api/v1';
+    'https://node-js-git-main-khalifa2003s-projects.vercel.app/api/v1';
   constructor(private http: HttpClient) {}
 
   setSubcategory(formData: FormData) {
