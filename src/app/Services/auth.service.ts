@@ -8,7 +8,7 @@ import { IProduct } from '../Models/iproduct';
   providedIn: 'root',
 })
 export class AuthService {
-  APIURL: string = 'http://localhost:8000/api/v1';
+  APIURL: string = 'https://back-qedmh4xkr-khalifa2003s-projects.vercel.app/api/v1';
   private currentUserSubject: BehaviorSubject<any>;
   public currentUser: Observable<any>;
 
