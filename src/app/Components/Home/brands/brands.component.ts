@@ -50,6 +50,7 @@ export class BrandsComponent implements OnInit {
   updateSlides(): void {
     this.brandService.getAllBrands().subscribe((res) => {
       this.slides = this.chunkItems(res.data, this.itemsPerSlide);
+      console.log(this.slides);
     });
   }
 
