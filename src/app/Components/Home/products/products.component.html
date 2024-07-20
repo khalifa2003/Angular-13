@@ -1,47 +1,25 @@
-<div class="title-holder">
-  <div class="sub-title">{{ name }}</div>
-</div>
+<app-loading *ngIf="products.length == 0"></app-loading>
 
-<app-loading *ngIf="!slides"></app-loading>
-
-<div
-  class="carousel slide category-card-container"
-  data-bs-ride="carousel"
-  *ngIf="slides"
-  [id]="name"
->
-  <div class="carousel-inner">
-    <div
-      *ngFor="let slide of slides; let i = index"
-      class="carousel-item"
-      [class.active]="i === 0"
-    >
-      <div class="col-md-2 products-container">
-        <app-product-card
-          *ngFor="let item of slide.items"
-          [product]="item"
-        ></app-product-card>
+<div class="category-card-container">
+  <p-carousel
+    [value]="products"
+    [numVisible]="5"
+    [numScroll]="5"
+    [circular]="false"
+    [responsiveOptions]="responsiveOptions"
+  >
+    <ng-template pTemplate="header">
+      <div class="title-holder">
+        <div class="sub-title">{{ name }}</div>
       </div>
-    </div>
+    </ng-template>
 
-    <button
-      class="carousel-control-prev"
-      [attr.data-bs-target]="'#' + name"
-      data-bs-slide="prev"
-      type="button"
-    >
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-
-    <button
-      class="carousel-control-next"
-      [attr.data-bs-target]="'#' + name"
-      data-bs-slide="next"
-      type="button"
-    >
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
+    <ng-template let-product pTemplate="item">
+      <div class="product-item">
+        <div class="product-item-content">
+          <app-product-card [product]="product"></app-product-card>
+        </div>
+      </div>
+    </ng-template>
+  </p-carousel>
 </div>

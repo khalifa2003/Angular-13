@@ -1,5 +1,4 @@
-<div class="admin-content-text">All Products Mangement</div>
-<hr />
+<div class="title">All Products Mangement</div>
 <div class="d-flex justify-content-center">
   <input
     type="text"
@@ -9,10 +8,9 @@
     placeholder="Search"
   />
 </div>
-<div class="row d-flex justify-content-around" *ngIf="products.length > 0">
+<div class="d-flex d-flex justify-content-around flex-wrap gap-1 admin-height">
   <app-admin-all-products-card
-    class="col-lg-3 mx-2"
-    *ngFor="let prd of products"
-    [product]="prd"
+    *ngFor="let product of products"
+    [product]="product"
   ></app-admin-all-products-card>
 </div>

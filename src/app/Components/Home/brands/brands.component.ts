@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { BrandService } from 'src/app/Services/brand.service';
 import { IBrand } from 'src/app/Models/ibrand';
 import { Router } from '@angular/router';
@@ -10,56 +9,38 @@ import { Router } from '@angular/router';
   styleUrls: ['./brands.component.css'],
 })
 export class BrandsComponent implements OnInit {
-  slides: any;
-  itemsPerSlide: number = 4;
+  listOfBrands: IBrand[] = [];
+  responsiveOptions: any[];
 
-  constructor(
-    private breakpointObserver: BreakpointObserver,
-    private brandService: BrandService,
-    private router: Router
-  ) {}
-
-  ngOnInit(): void {
-    this.updateSlides();
-    this.breakpointObserver
-      .observe([
-        Breakpoints.Small,
-        Breakpoints.Medium,
-        Breakpoints.Large,
-        Breakpoints.Web,
-        Breakpoints.XSmall,
-      ])
-      .subscribe((result) => {
-        if (result.matches) {
-          if (this.breakpointObserver.isMatched(Breakpoints.XSmall)) {
-            this.itemsPerSlide = 1;
-          } else if (this.breakpointObserver.isMatched(Breakpoints.Small)) {
-            this.itemsPerSlide = 3;
-          } else if (this.breakpointObserver.isMatched(Breakpoints.Medium)) {
-            this.itemsPerSlide = 4;
-          } else if (this.breakpointObserver.isMatched(Breakpoints.Large)) {
-            this.itemsPerSlide = 5;
-          } else if (this.breakpointObserver.isMatched(Breakpoints.Web)) {
-            this.itemsPerSlide = 6;
-          }
-          this.updateSlides();
-        }
-      });
+  constructor(private brandService: BrandService, private router: Router) {
+    this.responsiveOptions = [
+      {
+        breakpoint: '1024px',
+        numVisible: 5,
+        numScroll: 3,
+      },
+      {
+        breakpoint: '991px',
+        numVisible: 4,
+        numScroll: 2,
+      },
+      {
+        breakpoint: '768px',
+        numVisible: 3,
+        numScroll: 2,
+      },
+      {
+        breakpoint: '560px',
+        numVisible: 2,
+        numScroll: 1,
+      },
+    ];
   }
 
-  updateSlides(): void {
+  ngOnInit() {
     this.brandService.getAllBrands().subscribe((res) => {
-      this.slides = this.chunkItems(res.data, this.itemsPerSlide);
-      console.log(this.slides);
+      this.listOfBrands = res.data;
     });
-  }
-
-  chunkItems(array: any, size: number) {
-    const result = [];
-    for (let i = 0; i < array.length; i += size) {
-      result.push({ items: array.slice(i, i + size) });
-    }
-    return result;
   }
 
   getProduct(item: IBrand) {

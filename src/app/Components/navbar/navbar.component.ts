@@ -7,6 +7,7 @@ import { AuthService } from 'src/app/Services/auth.service';
 import { CategoryService } from 'src/app/Services/category.service';
 import { ProductService } from 'src/app/Services/product.service';
 import { SubcategoryService } from 'src/app/Services/subcategory.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-navbar',
@@ -28,19 +29,20 @@ export class NavbarComponent {
   ) {}
 
   ngOnInit(): void {
-    this.CategoryService.getAllCategories().subscribe((data) => {
-      this.listOfCategories = data.data;
-    });
+    this.CategoryService.getAllCategories()
+      .pipe(map((data) => data.data))
+      .subscribe((categories: ICategory[]) => {
+        this.listOfCategories = [...categories];
+      });
   }
 
   onSearch(): void {
-    if (this.searchTerm.trim() != '') {
+    if (this.searchTerm.trim() !== '') {
       this.productService
         .searchProducts({ title: this.searchTerm })
-        .subscribe((data: any) => {
-          console.log(data);
-
-          this.searchResults = data.data;
+        .pipe(map((data) => data.data))
+        .subscribe((products: IProduct[]) => {
+          this.searchResults = [...products];
         });
     } else {
       this.searchResults = [];

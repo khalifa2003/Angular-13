@@ -8,51 +8,34 @@ import { CategoryService } from 'src/app/Services/category.service';
   styleUrls: ['./admin-add-category.component.css'],
 })
 export class AdminAddCategoryComponent {
-  categoryForm: FormGroup;
   showModal: boolean = false;
+  categoryForm: FormGroup;
 
   constructor(private categoryService: CategoryService, fb: FormBuilder) {
     this.categoryForm = fb.group({
       name: ['', Validators.required],
       description: [''],
-      image: [null],
+      image: [''],
     });
   }
-
-  onFileSelected(event: any) {
-    const file = event.target.files[0];
-    this.categoryForm.patchValue({ image: file });
-  }
-
   onSubmit() {
     if (this.categoryForm.valid) {
-      const formData: FormData = new FormData();
-      formData.append('name', this.categoryForm.value.name);
-      formData.append('description', this.categoryForm.value.description);
-      formData.append('image', this.categoryForm.get('image')?.value);
-      this.categoryService.createCategory(formData).subscribe((res) => {
-        this.openModal();
-        this.categoryForm.reset();
-      });
+      this.categoryService
+        .createCategory(this.categoryForm.value)
+        .subscribe((res) => {
+          this.openModal();
+          setTimeout(() => {
+            this.closeModal();
+          }, 3000);
+          this.categoryForm.reset();
+        });
     }
   }
-
   openModal() {
     this.showModal = true;
   }
-
   closeModal() {
     this.showModal = false;
-  }
-
-  handleNo() {
-    this.closeModal();
-    console.log('Not Confirmed');
-  }
-
-  handleYes() {
-    this.closeModal();
-    console.log('Confirmed');
   }
 
   get f() {

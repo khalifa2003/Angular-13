@@ -15,24 +15,17 @@ export class AdminAddBrandComponent {
     this.brandForm = fb.group({
       name: ['', Validators.required],
       description: [''],
-      image: [null, Validators.required],
+      image: ['', Validators.required],
     });
-  }
-
-  onFileSelected(event: any) {
-    const file = event.target.files[0];
-    this.brandForm.patchValue({ image: file });
   }
 
   onSubmit() {
     if (this.brandForm.valid) {
-      const formdata = new FormData();
-      formdata.append('name', this.brandForm.get('name')?.value);
-      formdata.append('description', this.brandForm.get('description')?.value);
-      formdata.append('image', this.brandForm.get('image')?.value);
-
-      this.brandService.createBrand(formdata).subscribe((e: any) => {
+      this.brandService.createBrand(this.brandForm.value).subscribe((res) => {
         this.openModal();
+        setTimeout(() => {
+          this.closeModal();
+        }, 3000);
         this.brandForm.reset();
       });
     }
@@ -44,16 +37,6 @@ export class AdminAddBrandComponent {
 
   closeModal() {
     this.showModal = false;
-  }
-
-  handleNo() {
-    this.closeModal();
-    console.log('Not Confirmed');
-  }
-
-  handleYes() {
-    this.closeModal();
-    console.log('Confirmed');
   }
 
   get f() {

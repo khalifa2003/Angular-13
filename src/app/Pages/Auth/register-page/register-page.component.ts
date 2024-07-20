@@ -11,7 +11,6 @@ import { AuthService } from 'src/app/Services/auth.service';
 export class RegisterPageComponent {
   registerForm: FormGroup;
   returnUrl: string = '';
-  error: string = '';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -39,7 +38,7 @@ export class RegisterPageComponent {
     }
 
     this.authService.register(this.registerForm.value).subscribe((res) => {
-      this.router.navigate(['/login']);
+      this.router.navigate(['/home']);
     });
   }
 }

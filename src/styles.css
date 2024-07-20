@@ -1,5 +1,7 @@
 /* Start Global Rules */
 @import "~bootstrap-icons/font/bootstrap-icons.css";
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
 :root {
   --yellow-color: #ffe900;
   --blue-color: #1339e2;
@@ -54,96 +56,9 @@ html,
 body {
   height: 100%;
 }
-
-/* admin style  */
-
-.sidebar {
-  min-height: 660px;
-  background-color: var(--gray-color);
-  border-radius: 21px;
-  display: flex;
-  flex-direction: column;
-  margin: 20px 0;
+.admin-height {
+  min-height: 80vh;
 }
-
-.admin-side-text {
-  color: var(--yellow-color);
-  font-size: 16px;
-  width: 100%;
-  cursor: pointer;
+a {
+  text-decoration: none;
 }
-
-.admin-side-text:hover {
-  background-color: #272727;
-  color: var(--yellow-color);
-  font-size: 17px;
-  transition: 0.3s;
-}
-.admin-content-text {
-  color: var(--yellow-alt-color);
-  font-weight: bold;
-  font-size: 26px;
-}
-.item-delete-edit {
-  color: var(--yellow-color);
-  font-size: 16px;
-  cursor: pointer;
-}
-.text-form {
-  color: var(--yellow-color);
-  font-size: 20px;
-  margin-bottom: 10px;
-  font-weight: bold;
-}
-.input-form {
-  width: 100%;
-  border-radius: 5px;
-  border: 1px solid #979797;
-  padding: 10px;
-}
-.input-form-area {
-  width: 100%;
-  border: 1px solid #979797;
-  border-radius: 8px;
-  background-color: #f9f9f9;
-}
-.select {
-  padding: 10px;
-  color: #979797;
-  width: 100%;
-  border: 1px solid #979797;
-  border-radius: 8px;
-}
-.btn-save {
-  border: none;
-  color: #fff;
-  height: 46px;
-  width: 150px;
-  border-radius: 9px;
-  background-color: #757575;
-}
-.btn-save:hover {
-  color: var(--yellow-color);
-  transition: 0.3s;
-  background-color: #272727;
-}
-.btn-a {
-  border: none;
-  color: white;
-  height: 45px;
-  border-radius: 9px;
-}
-.btn-a:hover {
-  color: rgb(164, 164, 164);
-}
-.cat-text {
-  color: var(--yellow-color);
-}
-.cat-text:hover {
-  color: var(--yellow-alt-color);
-  transition: 0.3s;
-}
-/* end admin  */
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

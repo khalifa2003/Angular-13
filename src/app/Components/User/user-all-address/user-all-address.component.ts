@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../Services/auth.service';
+import { Address } from 'src/app/Models/address';
+
 
 @Component({
   selector: 'app-user-all-address',
@@ -9,11 +11,14 @@ import { AuthService } from '../../../Services/auth.service';
 export class UserAllAddressComponent implements OnInit {
   showModal: boolean = false;
   selectedAddress: string = '';
-  addresses: any;
+  addresses: Address[] = [];
 
   constructor(private AuthService: AuthService) {}
 
   ngOnInit(): void {
+    this.getAddresses();
+  }
+  getAddresses() {
     this.AuthService.getAddresses().subscribe((res) => {
       this.addresses = res.data;
     });
@@ -28,15 +33,10 @@ export class UserAllAddressComponent implements OnInit {
     this.showModal = false;
   }
 
-  handleNo() {
-    this.closeModal();
-    console.log('Not Confirmed');
-  }
-
   delete() {
     this.AuthService.deleteAddress(this.selectedAddress).subscribe((res) => {
       this.closeModal();
-      window.location.reload();
+      this.getAddresses();
     });
   }
 }

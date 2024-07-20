@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../Services/auth.service';
 import { IProduct } from 'src/app/Models/iproduct';
 import { ProductService } from 'src/app/Services/product.service';
+import { Cart } from 'src/app/Models/cart';
 
 @Component({
   selector: 'app-cart-page',
@@ -10,7 +11,7 @@ import { ProductService } from 'src/app/Services/product.service';
 })
 export class CartPageComponent implements OnInit {
   products: IProduct[] = [];
-  cart: any;
+  cart: Cart = {} as Cart;
   constructor(
     private AuthService: AuthService,
     private ProductService: ProductService
@@ -53,7 +54,7 @@ export class CartPageComponent implements OnInit {
   }
   deleteCart() {
     this.AuthService.deleteCart().subscribe(() => {
-      this.cart = [];
+      this.cart = {} as Cart;
     });
   }
   // --------------------------------------

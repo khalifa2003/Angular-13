@@ -9,10 +9,10 @@ import { CategoryService } from 'src/app/Services/category.service';
 })
 export class CategoryPageComponent implements OnInit {
   categories: ICategory[] = [];
-  constructor(private catSer: CategoryService) {}
+  constructor(private CategoryService: CategoryService) {}
 
   ngOnInit(): void {
-    this.catSer.getAllCategories().subscribe((res) => {
+    this.CategoryService.getAllCategories().subscribe((res) => {
       this.categories = res.data;
     });
   }

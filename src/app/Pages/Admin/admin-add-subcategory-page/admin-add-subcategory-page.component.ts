@@ -1,15 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-admin-add-subcategory-page',
   templateUrl: './admin-add-subcategory-page.component.html',
-  styleUrls: ['./admin-add-subcategory-page.component.css']
+  styleUrls: ['./admin-add-subcategory-page.component.css'],
 })
-export class AdminAddSubcategoryPageComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+export class AdminAddSubcategoryPageComponent {
+  constructor() {}
 }

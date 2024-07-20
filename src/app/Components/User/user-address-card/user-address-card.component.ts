@@ -1,15 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-user-address-card',
   templateUrl: './user-address-card.component.html',
-  styleUrls: ['./user-address-card.component.css']
+  styleUrls: ['./user-address-card.component.css'],
 })
-export class UserAddressCardComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+export class UserAddressCardComponent {
+  constructor() {}
 }

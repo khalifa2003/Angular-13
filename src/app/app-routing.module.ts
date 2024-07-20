@@ -31,6 +31,7 @@ import { AuthGuard } from './Guards/auth.guard';
 import { UserDashboardPageComponent } from './Pages/User/user-dashboard-page/user-dashboard-page.component';
 import { AdminAllCategoriesPageComponent } from './Pages/Admin/admin-all-categories-page/admin-all-categories-page.component';
 import { AdminAllBrandsPageComponent } from './Pages/Admin/admin-all-brands-page/admin-all-brands-page.component';
+import { AdminGuard } from './Guards/admin.guard';
 const routes: Routes = [
   {
     path: '',
@@ -39,10 +40,6 @@ const routes: Routes = [
       { path: '', redirectTo: '/home', pathMatch: 'full' }, // Default path
     ],
   }, // Default path
-  {
-    path: 'admin/id/addsubcategory',
-    component: AdminAddSubcategoryPageComponent,
-  },
   { path: 'home', component: HomePageComponent },
   { path: 'products', component: AllProductPageComponent },
   { path: 'products/:id', component: ProductPageComponent },
@@ -55,56 +52,86 @@ const routes: Routes = [
   { path: 'logout', component: LoginPageComponent },
 
   {
+    path: 'admin/id/addsubcategory',
+    component: AdminAddSubcategoryPageComponent,
+    canActivate: [AdminGuard],
+  },
+  {
     path: 'admin/id/allorders',
     component: AdminAllOrderPageComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AdminGuard],
   },
   {
     path: 'admin/id/allproducts',
     component: AdminAllProductsPageComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AdminGuard],
   },
   {
     path: 'admin/id/allproducts/:id',
     component: AdminEditProductPageComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AdminGuard],
   },
   {
     path: 'admin/id/addbrand',
     component: AdminAddBrandPageComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AdminGuard],
   },
   {
     path: 'admin/id/addcategory',
     component: AdminAddCategoryPageComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AdminGuard],
   },
   {
     path: 'admin/id/allcategories',
     component: AdminAllCategoriesPageComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AdminGuard],
   },
   {
     path: 'admin/id/allbrands',
     component: AdminAllBrandsPageComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AdminGuard],
   },
   {
     path: 'admin/id/addproduct',
     component: AdminAddProductPageComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AdminGuard],
   },
 
   {
     path: 'user/id/cart',
     component: CartPageComponent,
+    canActivate: [AuthGuard],
   },
-  { path: 'user/id/dashboard', component: UserDashboardPageComponent },
-  { path: 'user/id/addaddress', component: UserAddAddressPageComponent },
-  { path: 'user/id/addresses', component: UserAllAddresPageComponent },
-  { path: 'user/id/allorders', component: UserAllOrdersPageComponent },
-  { path: 'user/id/addresses/id', component: UserEditAddressPageComponent },
-  { path: 'user/id/profile', component: UserProfilePageComponent },
+  {
+    path: 'user/id/dashboard',
+    component: UserDashboardPageComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'user/id/addaddress',
+    component: UserAddAddressPageComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'user/id/addresses',
+    component: UserAllAddresPageComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'user/id/allorders',
+    component: UserAllOrdersPageComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'user/id/addresses/id',
+    component: UserEditAddressPageComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'user/id/profile',
+    component: UserProfilePageComponent,
+    canActivate: [AuthGuard],
+  },
   {
     path: 'user/id/favoriteproducts',
     component: UserFavoriteProductsPageComponent,

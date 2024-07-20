@@ -19,6 +19,9 @@ export class ReviewComponent {
   newReview: any = { rating: 0, comment: '' };
 
   addReview() {
+    console.log(this.newReview.comment);
+    console.log(this.newReview.rating);
+
     this.AuthService.addReview(
       this.newReview.comment,
       this.newReview.rating,
@@ -43,5 +46,4 @@ export class ReviewComponent {
       this.getReviews();
     });
   }
-
 }

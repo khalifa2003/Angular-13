@@ -29,11 +29,6 @@ export class AdminAllCategoriesComponent implements OnInit {
     this.showModal = false;
   }
 
-  handleNo() {
-    this.closeModal();
-    console.log('Not Confirmed');
-  }
-
   delete(id: string) {
     this.CategoryService.deleteCategory(id).subscribe((res) => {
       this.closeModal();

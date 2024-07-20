@@ -1,31 +1,30 @@
 import { HttpClient, HttpEventType } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BrandService {
-  APIURL: string =
-    'https://node-js-git-main-khalifa2003s-projects.vercel.app/api/v1';
   constructor(private http: HttpClient) {}
 
   getAllBrands(): Observable<any> {
-    return this.http.get(`${this.APIURL}/brands`);
+    return this.http.get(`${environment.APIURL}/brands`);
   }
 
   getBrand(id: String): Observable<any> {
-    return this.http.get(`${this.APIURL}/brands/${id}`);
+    return this.http.get(`${environment.APIURL}/brands/${id}`);
   }
 
   createBrand(formData: FormData) {
-    return this.http.post(`${this.APIURL}/brands`, formData, {
+    return this.http.post(`${environment.APIURL}/brands`, formData, {
       reportProgress: true,
       observe: 'events',
     });
   }
 
   deleteBrand(id: string) {
-    return this.http.delete(`${this.APIURL}/brands/${id}`);
+    return this.http.delete(`${environment.APIURL}/brands/${id}`);
   }
 }

@@ -1,4 +1,4 @@
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CategoryService } from 'src/app/Services/category.service';
 import { ProductService } from 'src/app/Services/product.service';
 import { BrandService } from 'src/app/Services/brand.service';
@@ -15,18 +15,17 @@ import { SubcategoryService } from 'src/app/Services/subcategory.service';
 })
 export class AdminAddProductComponent implements OnInit {
   productForm: FormGroup;
-  files: File[] = [];
   showModal: boolean = false;
 
-  listOfCategories: ICategory[] = [];
   listOfSubCategories: ISubcategory[] = [];
+  listOfCategories: ICategory[] = [];
   listOfBrands: IBrand[] = [];
 
   constructor(
     private SubcategoryService: SubcategoryService,
     private prodSer: ProductService,
-    private catSer: CategoryService,
-    private brandSer: BrandService,
+    private CategoryService: CategoryService,
+    private BrandService: BrandService,
     private fb: FormBuilder
   ) {
     this.productForm = this.fb.group({
@@ -37,84 +36,48 @@ export class AdminAddProductComponent implements OnInit {
         '',
         [Validators.required, Validators.max(1000), Validators.min(5)],
       ],
-      images: [[], Validators.required],
+      images: fb.array(['']),
       category: ['', Validators.required],
       brand: ['', Validators.required],
       subcategory: ['', Validators.required],
     });
   }
 
-  onFileSelected(event: any) {
-    this.files = Array.from(event.target.files);
-    const files = Array.from(event.target.files);
-    const imagePreviewsContainer = document.querySelector(
-      '.image-previews'
-    ) as HTMLElement;
-    imagePreviewsContainer.innerHTML = '';
-
-    files.forEach((file: any) => {
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        const imgElement = document.createElement('img');
-        imgElement.src = e.target.result;
-        imagePreviewsContainer.appendChild(imgElement);
-        imgElement.classList.add('image-preview');
-        imgElement.style.width = '100px';
-        imgElement.style.height = '100px';
-      };
-      reader.readAsDataURL(file);
-    });
-  }
-
   onSubmit() {
     if (this.productForm.valid) {
-      const formData: FormData = new FormData();
-      formData.append('title', this.productForm.get('title')?.value);
-      formData.append(
-        'description',
-        this.productForm.get('description')?.value
-      );
-      formData.append('price', this.productForm.get('price')?.value);
-      formData.append('quantity', this.productForm.get('quantity')?.value);
-      formData.append('category', this.productForm.get('category')?.value);
-      formData.append(
-        'subcategory',
-        this.productForm.get('subcategory')?.value
-      );
-      formData.append('brand', this.productForm.get('brand')?.value);
-
-      this.files.forEach((file: File) => {
-        formData.append(`images`, file, file.name);
+      this.prodSer.createProduct(this.productForm.value).subscribe((res) => {
+        this.openModal();
+        setTimeout(() => {
+          this.closeModal();
+        }, 3000);
+        this.productForm.reset();
       });
-      this.prodSer.createProduct(formData).subscribe(
-        (e: any) => {
-          this.openModal();
-          this.productForm.reset();
-        },
-        (error) => {
-          console.error('Upload Failed', error);
-        }
-      );
     }
   }
 
-  ngOnInit(): void {
-    this.catSer.getAllCategories().subscribe({
-      next: (res) => {
-        this.listOfCategories = res.data;
-      },
-      error: (err) => {
-        console.error('Failed to load categories', err);
-      },
-    });
+  get allImages() {
+    return this.productForm.get('images') as FormArray;
+  }
 
-    this.brandSer.getAllBrands().subscribe({
-      next: (res) => {
-        this.listOfBrands = res.data;
-      },
-      error: (err) => {
-        console.error('Failed to load brands', err);
-      },
+  addImage(event: any) {
+    this.allImages.push(this.fb.control(''));
+    event.target?.classList.add('d-none');
+  }
+
+  ngOnInit(): void {
+    this.getCategories();
+    this.getBrands();
+  }
+
+  getCategories() {
+    this.CategoryService.getAllCategories().subscribe((res) => {
+      this.listOfCategories = res.data;
+    });
+  }
+
+  getBrands() {
+    this.BrandService.getAllBrands().subscribe((res) => {
+      this.listOfBrands = res.data;
     });
   }
 
@@ -134,16 +97,6 @@ export class AdminAddProductComponent implements OnInit {
 
   closeModal() {
     this.showModal = false;
-  }
-
-  handleNo() {
-    this.closeModal();
-    console.log('Not Confirmed');
-  }
-
-  handleYes() {
-    this.closeModal();
-    console.log('Confirmed');
   }
 
   get f() {

@@ -86,6 +86,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { ChooseMethodComponent } from './Pages/Checkout/choose-method/choose-method.component';
 import { ReviewComponent } from './Components/Products/review/review.component';
+import { ButtonModule } from 'primeng/button';
+import { CarouselModule } from 'primeng/carousel';
+import { ToastModule } from 'primeng/toast';
+import { RatingModule } from 'primeng/rating';
+import { GalleriaModule } from 'primeng/galleria';
 
 @NgModule({
   declarations: [
@@ -172,6 +177,11 @@ import { ReviewComponent } from './Components/Products/review/review.component';
     MatSelectModule,
     MatFormFieldModule,
     MatInputModule,
+    CarouselModule,
+    ButtonModule,
+    ToastModule,
+    RatingModule,
+    GalleriaModule,
   ],
   providers: [
     ProductService,

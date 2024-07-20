@@ -1,48 +1,91 @@
-.success {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  width: 320px;
-  padding: 12px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: start;
-  background: #edfbd8;
-  border-radius: 8px;
-  border: 1px solid #84d65a;
-  box-shadow: 0px 0px 5px -3px #111;
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
 }
-
-.success__icon {
-  width: 20px;
-  height: 20px;
-  transform: translateY(-2px);
-  margin-right: 8px;
+.modal.show {
+  display: block;
 }
-
-.success__icon path {
-  fill: #84d65a;
+.modal-content {
+  position: relative;
+  background-color: var(--gray-color);
+  color: var(--yellow-color);
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 500px;
+  animation: fadeIn 0.5s;
+  border-radius: 10px;
+  text-align: center;
 }
-
-.success__title {
-  font-weight: 500;
-  font-size: 14px;
-  color: #2b641e;
+.modal-content h2 {
+  font-size: 20px;
 }
-
-.success__close {
-  width: 20px;
-  height: 20px;
+.close {
+  color: #aaa;
+  text-align: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
   cursor: pointer;
-  margin-left: auto;
 }
-
-.success__close path {
-  fill: #2b641e;
+.modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
 }
-
-
-
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+textarea {
+  border-radius: 5px;
+  margin-top: 10px;
+  padding: 7px;
+  width: 100%;
+  height: 120px;
+}
+.title {
+  color: var(--yellow-alt-color);
+  width: fit-content;
+  margin: auto;
+  border-bottom: 1px solid;
+  font-weight: bold;
+  font-size: 26px;
+  margin-bottom: 20px;
+}
+.form-inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.form-group {
+  width: 50%;
+}
+@media only screen and (max-width: 990px) {
+  .form-group {
+    width: 100%;
+    transition: 0.3s;
+  }
+}
+/* ------------------------------------------------------------ */
 .radio-input input {
   display: none;
 }
@@ -54,7 +97,7 @@
   background: #fff;
   color: #000;
   border-radius: 10px;
-  box-shadow: 0px 87px 78px -39px rgba(0,0,0,0.4);
+  box-shadow: 0px 87px 78px -39px rgba(0, 0, 0, 0.4);
   width: 320px;
 }
 
@@ -82,7 +125,7 @@
   font-weight: 600;
 }
 
-.radio-input  label {
+.radio-input label {
   display: flex;
   background-color: #fff;
   padding: 14px;
@@ -93,13 +136,13 @@
   cursor: pointer;
   border: 1px solid rgba(187, 187, 187, 0.164);
   color: #000;
-  transition: .3s ease;
+  transition: 0.3s ease;
 }
 .radio-input {
   width: 100%;
 }
 
-.radio-input  label:hover {
+.radio-input label:hover {
   background-color: rgba(24, 24, 24, 0.13);
   border: 1px solid #bbb;
 }
@@ -109,7 +152,7 @@
   font-weight: 600;
   font-size: 12px;
   display: none;
-  transition: display .4s ease;
+  transition: display 0.4s ease;
 }
 
 .result.success {
@@ -134,6 +177,12 @@
   display: flex;
 }
 
-.radio-input:has(input:not([value="value-2"]):checked ) .result.error {
+.radio-input:has(input:not([value="value-2"]):checked) .result.error {
   display: flex;
+}
+.input {
+  width: 100%;
+  padding: 7px;
+  border-radius: 5px;
+  border: none;
 }

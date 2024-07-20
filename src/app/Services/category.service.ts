@@ -1,23 +1,23 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CategoryService {
-  APIURL: string = 'https://node-js-git-main-khalifa2003s-projects.vercel.app/api/v1';
   constructor(private http: HttpClient) {}
 
   getAllCategories(): Observable<any> {
-    return this.http.get(`${this.APIURL}/categories`);
+    return this.http.get(`${environment.APIURL}/categories`);
   }
 
   createCategory(formData: FormData): Observable<any> {
-    return this.http.post(`${this.APIURL}/categories`, formData);
+    return this.http.post(`${environment.APIURL}/categories`, formData);
   }
 
-  deleteCategory(_id: string) {
-    return this.http.delete(`${this.APIURL}/categories/${_id}`);
+  deleteCategory(_id: string): Observable<any> {
+    return this.http.delete(`${environment.APIURL}/categories/${_id}`);
   }
 }

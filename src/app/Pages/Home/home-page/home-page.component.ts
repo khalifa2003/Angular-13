@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IProduct } from 'src/app/Models/iproduct';
 import { ProductService } from 'src/app/Services/product.service';
 
 @Component({
@@ -8,16 +9,16 @@ import { ProductService } from 'src/app/Services/product.service';
 })
 export class HomePageComponent implements OnInit {
   constructor(private prodService: ProductService) {}
-  notebooks: any = [];
-  accessories: any = [];
-  bundles: any = [];
-  monitors: any = [];
+  notebooks: IProduct[] = [];
+  accessories: IProduct[] = [];
+  bundles: IProduct[] = [];
+  monitors: IProduct[] = [];
 
-  lenovo: any = [];
-  hp: any = [];
-  asus: any = [];
-  dell: any = [];
-  msi: any = [];
+  lenovo: IProduct[] = [];
+  hp: IProduct[] = [];
+  asus: IProduct[] = [];
+  dell: IProduct[] = [];
+  msi: IProduct[] = [];
 
   ngOnInit(): void {
     this.prodService

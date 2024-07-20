@@ -1,3 +1,5 @@
 * {
   font-family: Arial, sans-serif;
+  background-color: var(--gray-alt-color);
+  background-image: url(.././assets/stars.png);
 }

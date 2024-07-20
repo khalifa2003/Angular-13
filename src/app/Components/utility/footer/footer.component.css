@@ -1,13 +1,9 @@
 /* Start footer */
 .footer {
   background-color: var(--gray-color);
-
 }
 .logo {
   width: 100px;
-}
-.footer .copywrite > span {
-  color: var(--yellow-color);
 }
 .footer .copywrite div span {
   color: var(--yellow-color);
@@ -28,9 +24,10 @@
 .footer .youtube {
   background-color: #ff0000;
 }
-.c-primary{
+.c-primary {
   color: var(--yellow-color);
 }
-.c-alt-primary{
+
+.c-alt-primary {
   color: var(--yellow-alt-color);
 }

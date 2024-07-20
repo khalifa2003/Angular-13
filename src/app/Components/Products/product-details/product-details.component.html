@@ -1,14 +1,12 @@
 <div class="product-details">
   <h1 class="product-title">{{ details.title }}</h1>
-  <div class="stars">
-    <ng-container *ngFor="let star of fullStars">
-      <div class="star full"></div>
-    </ng-container>
-    <div *ngIf="halfStar" class="star half"></div>
-    <ng-container *ngFor="let star of emptyStars">
-      <div class="star empty"></div>
-    </ng-container>
-  </div>
+  <p-rating
+    [ngModel]="details.ratingsAverage"
+    [readonly]="true"
+    [stars]="5"
+    [cancel]="false"
+  ></p-rating>
+
   <p class="product-price">{{ details.price }} EGP</p>
   <p class="product-brand">Brand: <img src="{{ img }}" alt="" /></p>
   <p class="product-description">Descriptopn: {{ details.description }}</p>

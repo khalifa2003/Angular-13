@@ -6,6 +6,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { User } from 'src/app/Models/user';
 
 @Component({
   selector: 'app-user-add-address',
@@ -15,8 +16,8 @@ import {
 export class UserAddAddressComponent implements OnInit {
   cities: string[] = ['Alexandria', 'Cairo', 'Giza'];
   userForm: FormGroup = new FormGroup({});
-  user: any;
   showModal: boolean = false;
+  user: User = {} as User;
 
   constructor(private fb: FormBuilder, private AuthService: AuthService) {}
 
@@ -34,25 +35,17 @@ export class UserAddAddressComponent implements OnInit {
       postalCode: [],
     });
   }
+
   get f() {
     return this.userForm.controls;
   }
+
   openModal() {
     this.showModal = true;
   }
 
   closeModal() {
     this.showModal = false;
-  }
-
-  handleNo() {
-    this.closeModal();
-    console.log('Not Confirmed');
-  }
-
-  handleYes() {
-    this.closeModal();
-    console.log('Confirmed');
   }
 
   onSubmit() {

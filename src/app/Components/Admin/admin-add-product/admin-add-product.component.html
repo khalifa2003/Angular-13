@@ -1,17 +1,14 @@
-<div class="admin-content-text">Add New Product</div>
-<hr />
+<div class="title">Add New Product</div>
 
-<form (ngSubmit)="onSubmit()" [formGroup]="productForm" class="row d-flex">
+<form (ngSubmit)="onSubmit()" [formGroup]="productForm" class="form-inputs admin-height ">
   <div class="form-group my-1">
     <input
       [ngClass]="{ 'is-invalid': f['title'].touched && f['title'].invalid }"
       placeholder="Product title"
       formControlName="title"
-      class="input-form"
-      style="width: 50%"
+      class="input"
       type="text"
       id="title"
-      required
     />
     <div
       *ngIf="f['title'].touched && f['title'].invalid"
@@ -31,11 +28,8 @@
       }"
       placeholder="Product description"
       formControlName="description"
-      class="input-form"
-      style="width: 50%"
+      class="input"
       id="description"
-      required
-      rows="6"
     ></textarea>
     <div
       *ngIf="f['description'].touched && f['description'].invalid"
@@ -55,11 +49,9 @@
       [ngClass]="{ 'is-invalid': f['price'].touched && f['price'].invalid }"
       placeholder="Product Price"
       formControlName="price"
-      class="input-form"
-      style="width: 50%"
+      class="input"
       type="number"
       id="price"
-      required
     />
     <div
       *ngIf="f['price'].touched && f['price'].invalid"
@@ -77,8 +69,7 @@
       }"
       placeholder="Product quantity"
       formControlName="quantity"
-      class="input-form"
-      style="width: 50%"
+      class="input"
       type="number"
       id="quantity"
       required
@@ -96,7 +87,7 @@
   </div>
 
   <div class="form-group my-1" *ngIf="listOfBrands.length > 0">
-    <div class="radio-input" style="width: 50%">
+    <div class="radio-input">
       <div class="info w-100">
         <span class="question">Select Brand</span>
         <span class="steps">{{ listOfBrands.length }}</span>
@@ -123,7 +114,7 @@
   </div>
 
   <div class="form-group my-1" *ngIf="listOfCategories.length > 0">
-    <div class="radio-input" style="width: 50%">
+    <div class="radio-input">
       <div class="info w-100">
         <span class="question">Select Category</span>
         <span class="steps">{{ listOfCategories.length }}</span>
@@ -151,7 +142,7 @@
   </div>
 
   <div class="form-group my-1" *ngIf="listOfSubCategories.length > 0">
-    <div class="radio-input" style="width: 50%">
+    <div class="radio-input">
       <div class="info w-100">
         <span class="question">Select SubCategory</span>
         <span class="steps">{{ listOfSubCategories.length }}</span>
@@ -166,7 +157,7 @@
           aria-label="Default select example"
         >
           <option
-          *ngFor="let sub of listOfSubCategories"
+            *ngFor="let sub of listOfSubCategories"
             value="{{ sub._id }}"
             id="{{ sub._id }}"
           >
@@ -177,35 +168,40 @@
     </div>
   </div>
 
-  <div class="form-group my-1">
+  <div
+    class="form-group my-1"
+    formArrayName="images"
+    *ngFor="let image of allImages.controls; let i = index"
+  >
     <input
-      class="form-control file-input w-50"
-      (change)="onFileSelected($event)"
-      formControlName="images"
-      type="file"
-      multiple
+      type="text"
+      [formControlName]="i"
+      class="form-control"
+      id="{{ 'userImage-' + i }}"
+      name="userphone"
     />
+    <button type="button" class="btn btn-primary" (click)="addImage($event)">
+      +
+    </button>
   </div>
 
-  <div class="d-flex justify-content-center m-1 w-50">
+  <div class="d-flex justify-content-center mt-2">
     <button
       [disabled]="productForm.invalid"
-      type="submit"
       class="btn btn-success mt-2"
+      type="submit"
     >
       Create
     </button>
   </div>
 </form>
 
-<!-- ------------------------------ -->
-
 <div class="modal" [class.show]="showModal">
   <div class="modal-content">
     <span class="close" (click)="closeModal()">&times;</span>
     <h2>Product Created Successfully</h2>
     <div class="modal-buttons">
-      <button (click)="handleNo()" class="btn btn-success">Ok</button>
+      <button (click)="closeModal()" class="btn btn-success">Ok</button>
     </div>
   </div>
 </div>

@@ -10,13 +10,14 @@ import { SubcategoryService } from 'src/app/Services/subcategory.service';
   styleUrls: ['./admin-add-subcategory.component.css'],
 })
 export class AdminAddSubcategoryComponent implements OnInit {
-  subcategoryForm: FormGroup;
-  uploadStatus: Boolean = false;
   listOfCategories: ICategory[] = [];
+  subcategoryForm: FormGroup;
+  showModal: boolean = false;
+
   constructor(
-    private subCatSer: SubcategoryService,
+    private SubcategoryService: SubcategoryService,
     fb: FormBuilder,
-    private catSer: CategoryService
+    private CategoryService: CategoryService
   ) {
     this.subcategoryForm = fb.group({
       name: ['', Validators.required],
@@ -25,22 +26,34 @@ export class AdminAddSubcategoryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.catSer.getAllCategories().subscribe((res) => {
+    this.CategoryService.getAllCategories().subscribe((res) => {
       this.listOfCategories = res.data;
     });
   }
 
   onSubmit() {
     if (this.subcategoryForm.valid) {
-      this.subCatSer.setSubcategory(this.subcategoryForm.value).subscribe(
-        (res) => {
-          this.uploadStatus = true;
-          this.subcategoryForm.reset();
-        },
-        (err) => {
-          console.log(err);
-        }
-      );
+      this.SubcategoryService.setSubcategory(
+        this.subcategoryForm.value
+      ).subscribe(() => {
+        this.openModal();
+        setTimeout(() => {
+          this.closeModal();
+        }, 3000);
+        this.subcategoryForm.reset();
+      });
     }
+  }
+
+  openModal() {
+    this.showModal = true;
+  }
+
+  closeModal() {
+    this.showModal = false;
+  }
+
+  get f() {
+    return this.subcategoryForm.controls;
   }
 }

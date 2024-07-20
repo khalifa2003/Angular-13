@@ -4,11 +4,11 @@
     <p>
       <strong>{{ review.user.fname + " " + review.user.lname }}</strong>
     </p>
-    <p *ngIf="review.ratings == 1">⭐</p>
-    <p *ngIf="review.ratings == 2">⭐⭐</p>
-    <p *ngIf="review.ratings == 3">⭐⭐⭐</p>
-    <p *ngIf="review.ratings == 4">⭐⭐⭐⭐</p>
-    <p *ngIf="review.ratings == 5">⭐⭐⭐⭐⭐</p>
+    <p-rating
+      [(ngModel)]="review.ratings"
+      [cancel]="false"
+      [readonly]="true"
+    ></p-rating>
     <p>{{ review.title }}</p>
     <div *ngIf="user">
       <button
@@ -23,13 +23,7 @@
   <form (ngSubmit)="addReview()" #reviewForm="ngForm" class="review-form">
     <h3>Write a Review</h3>
     <label for="rating">Rating:</label>
-    <select id="rating" name="rating" [(ngModel)]="newReview.rating" required>
-      <option value="5">⭐⭐⭐⭐⭐</option>
-      <option value="4">⭐⭐⭐⭐</option>
-      <option value="3">⭐⭐⭐</option>
-      <option value="2">⭐⭐</option>
-      <option value="1">⭐</option>
-    </select>
+    <p-rating [(ngModel)]="newReview.rating" [cancel]="false"></p-rating>
     <label for="comment">Comment:</label>
     <textarea
       id="comment"

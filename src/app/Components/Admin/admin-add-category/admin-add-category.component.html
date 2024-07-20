@@ -1,16 +1,17 @@
-<div class="admin-content-text">Add New Category</div>
-<hr />
-<form (submit)="onSubmit()" class="row d-flex" [formGroup]="categoryForm">
+<div class="title">Add New Category</div>
+<form
+  (submit)="onSubmit()"
+  class="form-inputs admin-height"
+  [formGroup]="categoryForm"
+>
   <div class="form-group">
     <input
-      type="text"
-      required
-      class="input-form"
-      placeholder="Category Name"
-      id="name"
-      style="width: 50%"
-      formControlName="name"
       [ngClass]="{ 'is-invalid': f['name'].touched && f['name'].invalid }"
+      placeholder="Category Name"
+      formControlName="name"
+      class="input"
+      type="text"
+      id="name"
     />
     <div
       *ngIf="f['name'].touched && f['name'].invalid"
@@ -22,36 +23,50 @@
 
   <div class="form-group">
     <textarea
-      rows="6"
       id="description"
       placeholder="Category Description"
       formControlName="description"
-      style="width: 50%"
     ></textarea>
   </div>
 
-  <div class="d-flex justify-content-center align-items-center form-group w-50">
+  <div class="form-group">
     <input
-      id="image"
-      type="file"
-      (change)="onFileSelected($event)"
-      formControlName="image"
-      name="image"
       [ngClass]="{ 'is-invalid': f['image'].touched && f['image'].invalid }"
+      placeholder="Category image Url"
+      formControlName="image"
+      class="input"
+      type="text"
+      id="image"
     />
     <div
       *ngIf="f['image'].touched && f['image'].invalid"
       class="invalid-feedback"
     >
-      <div *ngIf="f['image'].errors?.['required']">Brand image Required</div>
+      <div *ngIf="f['image'].errors?.['required']">
+        Category Image URL Required
+      </div>
     </div>
   </div>
 
+  <div class="d-flex justify-content-center mt-2">
     <button
       [disabled]="categoryForm.invalid"
-      type="submit"
       class="btn btn-success mt-2"
+      type="submit"
     >
       Create
     </button>
+  </div>
 </form>
+
+<!-- ------------------------------ -->
+
+<div class="modal" [class.show]="showModal">
+  <div class="modal-content">
+    <span class="close" (click)="closeModal()">&times;</span>
+    <h2>Product Created Successfully</h2>
+    <div class="modal-buttons">
+      <button (click)="closeModal()" class="btn btn-success">Ok</button>
+    </div>
+  </div>
+</div>

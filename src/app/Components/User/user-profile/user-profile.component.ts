@@ -1,6 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from 'src/app/Services/auth.service';
 import { Router } from '@angular/router';
+import { User } from 'src/app/Models/user';
+import { Address } from 'src/app/Models/address';
 
 @Component({
   selector: 'app-user-profile',
@@ -8,15 +10,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./user-profile.component.css'],
 })
 export class UserProfileComponent implements OnInit {
-  user: any;
-  address: any;
-  constructor(private AuthService: AuthService, private Router: Router) {}
+  user: User = {} as User;
+  address: Address = {} as Address;
+  @ViewChild('emailInput') emailInput!: ElementRef;
+  @ViewChild('phoneInput') phoneInput!: ElementRef;
+  @ViewChild('imgInput') imgInput!: ElementRef;
+  constructor(private AuthService: AuthService) {}
 
   ngOnInit(): void {
-    this.onInit();
+    this.getData();
   }
 
-  onInit() {
+  getData() {
     this.AuthService.getMe().subscribe((res) => {
       this.user = res.data;
     });
@@ -25,70 +30,30 @@ export class UserProfileComponent implements OnInit {
     });
   }
 
-  // ----------------------------------------- upload image
-  changeImage: boolean = false;
-  openImg() {
-    this.changeImage = true;
-  }
-  closeImg() {
-    this.changeImage = false;
-  }
-  @ViewChild('phoneInput') fileInput!: ElementRef;
-  selectedFile: File | null = null;
-  onImageClick(): void {
-    this.fileInput.nativeElement.click();
-  }
-  onFileSelected(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
-      this.selectedFile = input.files[0];
-    }
-  }
-  onSubmit(): void {
-    const formData = new FormData();
-    if (this.selectedFile) {
-      formData.append('profileImage', this.selectedFile);
-    }
-
-    this.AuthService.updateMe(formData).subscribe((response) => {
-      console.log('Form submission successful', response);
-      this.changeImage = false;
-      window.location.reload();
-    });
-  }
-
-  // ----------------------------------------- change email
-  @ViewChild('emailInput') emailInput!: ElementRef;
-  @ViewChild('phoneInput') phoneInput!: ElementRef;
-  changePhone: boolean = false;
-  onSubmitPhone(): void {
-    const formData = new FormData();
-    formData.append('phone', this.phoneInput.nativeElement.value);
-
-    this.AuthService.updateMe(formData).subscribe((response) => {
+  onSubmit(data: any) {
+    this.AuthService.updateMe(data).subscribe((response) => {
       this.changePhone = false;
-      this.onInit();
+      this.getData();
     });
   }
-  onSubmitEmail(): void {
-    const formData = new FormData();
-    formData.append('email', this.emailInput.nativeElement.value);
 
-    this.AuthService.updateMe(formData).subscribe((response) => {
-      console.log('Form submission successful', response);
-      this.changeEmail = false;
-      window.location.reload();
-    });
-  }
+  changePhone: boolean = false;
+  changeImg: boolean = false;
   changeEmail: boolean = false;
   openEmail() {
     this.changeEmail = true;
   }
-  closeEmail() {
-    this.changeEmail = false;
+  openImg() {
+    this.changeImg = true;
   }
   openPhone() {
     this.changePhone = true;
+  }
+  closeEmail() {
+    this.changeEmail = false;
+  }
+  closeImg() {
+    this.changeImg = false;
   }
   closePhone() {
     this.changePhone = false;

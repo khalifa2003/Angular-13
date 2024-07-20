@@ -1,9 +1,6 @@
-
 .category-card-container {
   background-color: var(--gray-color);
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-  padding: 10px 10px;
+  border-radius: 10px;
 }
 .title-holder {
   padding: 10px 10px;
@@ -35,27 +32,11 @@
   width: 75%;
   left: 12.5%;
 }
-/* Carousel Control */
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-  background-color: blue;
-  border-radius: 50%;
-  height: 30px;
-  width: 30px;
-}
-.carousel-control-prev ,
-.carousel-control-next {
-  width: 40px;
-}
 
-.products-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  width: 100%;
+.product-item {
+  .product-item-content {
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+  }
 }
-.carousel-inner {
-  display: flex;
-  justify-content: flex-start;
-}
-

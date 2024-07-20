@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/Services/product.service';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, switchMap } from 'rxjs';
+import { IProduct } from 'src/app/Models/iproduct';
 
 @Component({
   selector: 'app-product-page',
@@ -9,8 +10,8 @@ import { Observable, switchMap } from 'rxjs';
   styleUrls: ['./product-page.component.css'],
 })
 export class ProductPageComponent implements OnInit {
-  productDetails: any;
-  iamgegallery: any;
+  productDetails: IProduct = {} as IProduct;
+  iamgegallery: string[] = [];
 
   productId: any;
   productDetails$: Observable<any> | undefined;

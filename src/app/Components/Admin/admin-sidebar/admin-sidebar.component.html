@@ -1,42 +1,53 @@
-<div class="sidebar">
-  <a routerLink="/admin/id/allorders">
-    <div class="admin-side-text border-bottom p-2 mx-auto text-center">
-      Order Management
-    </div>
-  </a>
-  <a routerLink="/admin/id/allproducts">
-    <div class="admin-side-text my-1 border-bottom p-2 mx-auto text-center">
-      Products Management
-    </div>
-  </a>
-  <a routerLink="/admin/id/allcategories">
-    <div class="admin-side-text my-1 border-bottom p-2 mx-auto text-center">
-      Categories Management
-    </div>
-  </a>
-  <a routerLink="/admin/id/allbrands">
-    <div class="admin-side-text my-1 border-bottom p-2 mx-auto text-center">
-      Brands Management
-    </div>
-  </a>
-  <a routerLink="/admin/id/addbrand">
-    <div class="admin-side-text my-1 border-bottom p-2 mx-auto text-center">
-      Add Brand
-    </div>
-  </a>
-  <a routerLink="/admin/id/addcategory">
-    <div class="admin-side-text my-1 border-bottom p-2 mx-auto text-center">
-      Add Category
-    </div>
-  </a>
-  <a routerLink="/admin/id/addsubcategory">
-    <div class="admin-side-text my-1 border-bottom p-2 mx-auto text-center">
-      Add Subcategory
-    </div>
-  </a>
-  <a routerLink="/admin/id/addproduct">
-    <div class="admin-side-text my-1 border-bottom p-2 mx-auto text-center">
-      Add Product
-    </div>
-  </a>
-</div>
+<nav class="main-menu">
+  <h3>Admin Sidebar</h3>
+  <ul>
+    <li>
+      <a routerLink="/admin/id/allorders">
+        <i class="fa fa-home fa-2x"></i>
+        <span class="nav-text"> Order Management </span>
+      </a>
+    </li>
+    <li class="has-subnav">
+      <a routerLink="/admin/id/allproducts">
+        <i class="fa fa-globe fa-2x"></i>
+        <span class="nav-text"> Products Management </span>
+      </a>
+    </li>
+    <li class="has-subnav">
+      <a routerLink="/admin/id/allcategories">
+        <i class="fa fa-comments fa-2x"></i>
+        <span class="nav-text">Categories Management </span>
+      </a>
+    </li>
+    <li class="has-subnav">
+      <a routerLink="/admin/id/allbrands">
+        <i class="fa fa-camera-retro fa-2x"></i>
+        <span class="nav-text"> Brands Management </span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/admin/id/addbrand">
+        <i class="fa fa-film fa-2x"></i>
+        <span class="nav-text"> Add Brand </span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/admin/id/addcategory">
+        <i class="fa fa-book fa-2x"></i>
+        <span class="nav-text"> Add Category</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/admin/id/addsubcategory">
+        <i class="fa fa-cogs fa-2x"></i>
+        <span class="nav-text"> Add Subcategory </span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/admin/id/addproduct">
+        <i class="fa fa-map-marker fa-2x"></i>
+        <span class="nav-text"> Add Product</span>
+      </a>
+    </li>
+  </ul>
+</nav>

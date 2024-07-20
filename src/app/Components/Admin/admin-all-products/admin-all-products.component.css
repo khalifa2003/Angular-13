@@ -6,3 +6,12 @@
   margin-bottom: 20px;
   text-align: center;
 }
+.title {
+  color: var(--yellow-alt-color);
+  width: fit-content;
+  margin: auto;
+  border-bottom: 1px solid;
+  font-weight: bold;
+  font-size: 26px;
+  margin-bottom: 20px;
+}

@@ -1,37 +1,41 @@
-<div class="sidebar">
-  <a
-    routerLink="/user/id/dashboard"
-    routerLinkActive="active"
-    class="admin-side-text border-bottom p-2 text-center"
-  >
-    Dashboard </a
-  ><a
-    routerLink="/user/id/profile"
-    routerLinkActive="active"
-    class="admin-side-text border-bottom p-2 text-center"
-  >
-    Profile
-  </a>
-  <a
-    routerLink="/user/id/addresses"
-    routerLinkActive="active"
-    class="admin-side-text border-bottom p-2 text-center"
-  >
-    Addresses
-  </a>
-  <a
-    routerLink="/user/id/allorders"
-    routerLinkActive="active"
-    class="admin-side-text border-bottom p-2 text-center"
-  >
-    Orders
-  </a>
-  <a
-    routerLink="/user/id/favoriteproducts"
-    routerLinkActive="active"
-    class="admin-side-text border-bottom p-2 text-center"
-  >
-    Favorite
-  </a>
-  <a class="admin-side-text border-bottom p-2 text-center"> Logout </a>
-</div>
+<nav class="main-menu">
+  <h3>User Sidebar</h3>
+  <ul>
+    <li>
+      <a routerLink="/user/id/dashboard" routerLinkActive="active">
+        <i class="fa fa-home fa-2x"></i>
+        <span class="nav-text"> Dashboard </span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/user/id/profile" routerLinkActive="active">
+        <i class="fa fa-globe fa-2x"></i>
+        <span class="nav-text"> Profile </span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/user/id/addresses" routerLinkActive="active">
+        <i class="fa fa-comments fa-2x"></i>
+        <span class="nav-text">Addresses </span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/user/id/favoriteproducts" routerLinkActive="active">
+        <i class="fa fa-camera-retro fa-2x"></i>
+        <span class="nav-text"> Favorite </span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/user/id/allorders" routerLinkActive="active">
+        <i class="fa fa-camera-retro fa-2x"></i>
+        <span class="nav-text"> Orders </span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/user/id/dashboard">
+        <i class="fa fa-film fa-2x"></i>
+        <span class="nav-text"> Logout </span>
+      </a>
+    </li>
+  </ul>
+</nav>

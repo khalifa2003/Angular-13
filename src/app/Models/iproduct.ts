@@ -5,7 +5,8 @@ export interface IProduct {
   description: string;
   quantity: number;
   price: number;
-  images: [string];
+  subcategory: string;
+  images: string[];
   category: string;
   subcategories?: string;
   brand: string;

@@ -9,11 +9,12 @@ import { BrandService } from 'src/app/Services/brand.service';
 })
 export class BrandContainerComponent implements OnInit {
   brands: IBrand[] = [];
-  constructor(private BrandSer: BrandService) {}
+
+  constructor(private BrandService: BrandService) {}
 
   ngOnInit(): void {
-    this.BrandSer.getAllBrands().subscribe((BrandSer) => {
-      this.brands = BrandSer.data;
+    this.BrandService.getAllBrands().subscribe((res) => {
+      this.brands = res.data;
     });
   }
 }

@@ -1,18 +1,18 @@
-<div class="image-gallery">
-  <div class="main-image row">
-    <img
-      id="current-image"
-      class="current-image"
-      src="{{ currentImage }}"
-      alt="Product Image"
-    />
-  </div>
-  <div class="thumbnail-images">
-    <img
-      *ngFor="let image of gallery"
-      src="{{ image }}"
-      alt="Thumbnail Image"
-      (click)="changeImage(image)"
-    />
-  </div>
-</div>
+<p-galleria
+  [value]="images"
+  [responsiveOptions]="responsiveOptions"
+  [containerStyle]="{
+    width: '90%',
+    background: 'transparent'
+  }"
+  [numVisible]="5"
+>
+  <ng-template pTemplate="item" let-item>
+    <img [src]="item" style="width: 100%" />
+  </ng-template>
+  <ng-template pTemplate="thumbnail" let-item>
+    <div class="grid grid-nogutter d-flex justify-content-center">
+      <img [src]="item" style="height: 70px" />
+    </div>
+  </ng-template>
+</p-galleria>

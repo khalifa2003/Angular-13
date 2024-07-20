@@ -2,7 +2,7 @@
   <div class="profile-header">
     <div class="img-container">
       <img
-        [src]="user.profileImage || '../../../../assets/person.jpg'"
+        [src]="user.profileImage"
         alt="Profile Picture"
         class="profile-picture"
         (click)="openImg()"
@@ -41,21 +41,8 @@
   </div>
 </div>
 
-<div class="change-profile-container" *ngIf="changeImage">
-  <form (ngSubmit)="onSubmit()" #profileForm="ngForm" class="profile-form">
-    <button (click)="closeImg()" class="btn-close"></button>
-    <input
-      class="custom-file-input"
-      type="file"
-      #fileInput
-      (change)="onFileSelected($event)"
-    />
-    <button type="submit" class="btn btn-success">Update</button>
-  </form>
-</div>
-
 <div class="change-profile-container" *ngIf="changePhone">
-  <form (ngSubmit)="onSubmitPhone()" class="profile-form">
+  <form class="profile-form" (submit)="onSubmit({ phone: phoneInput.value })">
     <button (click)="closePhone()" class="btn-close"></button>
     <input
       class="m-2 form-control w-50"
@@ -68,13 +55,29 @@
 </div>
 
 <div class="change-profile-container" *ngIf="changeEmail">
-  <form (ngSubmit)="onSubmitEmail()" class="profile-form">
+  <form (submit)="onSubmit({ email: emailInput.value })" class="profile-form">
     <button (click)="closeEmail()" class="btn-close"></button>
     <input
       class="m-2 form-control w-50"
       placeholder="Email ..."
       type="email"
       #emailInput
+    />
+    <button type="submit" class="btn btn-success">Update</button>
+  </form>
+</div>
+
+<div class="change-profile-container" *ngIf="changeImg">
+  <form
+    (submit)="onSubmit({ profileImage: imgInput.value })"
+    class="profile-form"
+  >
+    <button (click)="closeImg()" class="btn-close"></button>
+    <input
+      class="m-2 form-control w-50"
+      placeholder="Image URL ..."
+      type="text"
+      #imgInput
     />
     <button type="submit" class="btn btn-success">Update</button>
   </form>

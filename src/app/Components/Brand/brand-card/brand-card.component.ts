@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { IBrand } from 'src/app/Models/ibrand';
 
 @Component({
@@ -6,9 +6,7 @@ import { IBrand } from 'src/app/Models/ibrand';
   templateUrl: './brand-card.component.html',
   styleUrls: ['./brand-card.component.css'],
 })
-export class BrandCardComponent implements OnInit {
+export class BrandCardComponent {
   @Input() brand: IBrand | undefined;
   constructor() {}
-
-  ngOnInit(): void {}
 }

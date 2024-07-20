@@ -34,7 +34,6 @@ export class ProductCardComponent implements OnInit {
       });
     }
   }
-  // --------------------------------------
 
   showModal: boolean = false;
   addToCart() {
@@ -47,26 +46,5 @@ export class ProductCardComponent implements OnInit {
   }
   closeModal() {
     this.showModal = false;
-  }
-  // ----------------------------------
-  fullStars: number[] = [];
-  halfStar: boolean = false;
-  emptyStars: number[] = [];
-
-  ngOnChanges(): void {
-    this.updateStars();
-    this.getProducts();
-  }
-
-  private updateStars(): void {
-    if (this.product.ratingsAverage) {
-      const fullStarsCount = Math.floor(this.product.ratingsAverage);
-      const hasHalfStar = this.product.ratingsAverage % 1 !== 0;
-      const emptyStarsCount = 5 - fullStarsCount - (hasHalfStar ? 1 : 0);
-
-      this.fullStars = Array(fullStarsCount).fill(0);
-      this.halfStar = hasHalfStar;
-      this.emptyStars = Array(emptyStarsCount).fill(0);
-    }
   }
 }
