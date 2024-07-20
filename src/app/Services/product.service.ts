@@ -10,11 +10,11 @@ export class ProductService {
   constructor(private http: HttpClient) {}
 
   getAllProducts(): Observable<any> {
-    return this.http.get(`${environment.APIURL}/api/v1/products`);
+    return this.http.get(`${environment.APIURL}/products`);
   }
 
   getProductById(id: String | null): Observable<any> {
-    return this.http.get(`${environment.APIURL}/api/v1/products/${id}`);
+    return this.http.get(`${environment.APIURL}/products/${id}`);
   }
 
   searchProducts(params: any): Observable<any> {
@@ -24,14 +24,14 @@ export class ProductService {
         queryParams = queryParams.set(key, params[key]);
       });
     }
-    return this.http.get(`${environment.APIURL}/api/v1/products`, {
+    return this.http.get(`${environment.APIURL}/products`, {
       params: queryParams,
     });
   }
 
   createProduct(formData: FormData): Observable<any> {
     return this.http
-      .post(`${environment.APIURL}/api/v1/products`, formData, {
+      .post(`${environment.APIURL}/products`, formData, {
         reportProgress: true,
         observe: 'events',
       })
@@ -53,6 +53,6 @@ export class ProductService {
   }
 
   deleteProduct(Id: String) {
-    return this.http.delete(`${environment.APIURL}/api/v1/products/${Id}`);
+    return this.http.delete(`${environment.APIURL}/products/${Id}`);
   }
 }

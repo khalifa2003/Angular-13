@@ -10,14 +10,14 @@ export class SubcategoryService {
 
   setSubcategory(formData: FormData) {
     return this.http.post(
-      `${environment.APIURL}/api/v1/subcategories`,
+      `${environment.APIURL}/subcategories`,
       formData
     );
   }
 
   getSubcategories(category: string): Observable<any> {
     return this.http.get(
-      `${environment.APIURL}/api/v1/subcategories?category=${category}`
+      `${environment.APIURL}/subcategories?category=${category}`
     );
   }
 }
