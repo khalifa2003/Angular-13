@@ -35,7 +35,7 @@ export class AuthService {
 
   login(formdata: FormData) {
     return this.http
-      .post<any>(`${environment.APIURL}/auth/login`, formdata)
+      .post<any>(`${environment.APIURL}/api/v1/auth/login`, formdata)
       .pipe(
         tap((user) => {
           localStorage.setItem('currentUser', JSON.stringify(user));
@@ -47,7 +47,7 @@ export class AuthService {
 
   register(formdata: FormData) {
     return this.http
-      .post<any>(`${environment.APIURL}/auth/signup`, formdata)
+      .post<any>(`${environment.APIURL}/api/v1/auth/signup`, formdata)
       .pipe(
         tap((user) => {
           localStorage.setItem('currentUser', JSON.stringify(user));
@@ -79,7 +79,7 @@ export class AuthService {
     });
     console.log(`Bearer ${this.currentUserValue.token}`);
 
-    return this.http.get(`${environment.APIURL}/users/getMe`, { headers });
+    return this.http.get(`${environment.APIURL}/api/v1/users/getMe`, { headers });
   }
 
   updateMe(formData: any): Observable<any> {
@@ -88,7 +88,7 @@ export class AuthService {
     });
     console.log(formData);
 
-    return this.http.put(`${environment.APIURL}/users/updateMe`, formData, {
+    return this.http.put(`${environment.APIURL}/api/v1/users/updateMe`, formData, {
       headers,
     });
   }
@@ -98,7 +98,7 @@ export class AuthService {
     const headers = new HttpHeaders({
       authorization: `Bearer ${this.currentUserValue.token}`,
     });
-    return this.http.post(`${environment.APIURL}/addresses`, formData, {
+    return this.http.post(`${environment.APIURL}/api/v1/addresses`, formData, {
       headers,
     });
   }
@@ -107,7 +107,7 @@ export class AuthService {
     const headers = new HttpHeaders({
       authorization: `Bearer ${this.currentUserValue.token}`,
     });
-    return this.http.delete(`${environment.APIURL}/addresses/${addressId}`, {
+    return this.http.delete(`${environment.APIURL}/api/v1/addresses/${addressId}`, {
       headers,
     });
   }
@@ -117,7 +117,7 @@ export class AuthService {
       authorization: `Bearer ${this.currentUserValue.token}`,
     });
 
-    return this.http.get(`${environment.APIURL}/addresses`, { headers });
+    return this.http.get(`${environment.APIURL}/api/v1/addresses`, { headers });
   }
 
   // ***** Favorite *****
@@ -125,7 +125,7 @@ export class AuthService {
     const headers = new HttpHeaders({
       authorization: `Bearer ${this.currentUserValue.token}`,
     });
-    return this.http.post(`${environment.APIURL}/wishlist`, {
+    return this.http.post(`${environment.APIURL}/api/v1/wishlist`, {
       headers,
     });
   }
@@ -136,7 +136,7 @@ export class AuthService {
     });
     this.currentUserValue.data.wishlist.push(product._id);
     localStorage.setItem('currentUser', JSON.stringify(this.currentUserValue));
-    return this.http.post(`${environment.APIURL}/wishlist`, product, {
+    return this.http.post(`${environment.APIURL}/api/v1/wishlist`, product, {
       headers,
     });
   }
@@ -157,7 +157,7 @@ export class AuthService {
     );
     localStorage.setItem('currentUser', JSON.stringify(this.currentUserValue));
 
-    return this.http.delete(`${environment.APIURL}/wishlist/${product._id}`, {
+    return this.http.delete(`${environment.APIURL}/api/v1/wishlist/${product._id}`, {
       headers,
     });
   }
@@ -169,7 +169,7 @@ export class AuthService {
     });
 
     return this.http.post(
-      `${environment.APIURL}/cart`,
+      `${environment.APIURL}/api/v1/cart`,
       { productId },
       {
         headers,
@@ -181,7 +181,7 @@ export class AuthService {
     const headers = new HttpHeaders({
       authorization: `Bearer ${this.currentUserValue.token}`,
     });
-    return this.http.get(`${environment.APIURL}/cart`, { headers });
+    return this.http.get(`${environment.APIURL}/api/v1/cart`, { headers });
   }
 
   updateCartItemQuantity(productId: string, quantity: number): Observable<any> {
@@ -189,7 +189,7 @@ export class AuthService {
       authorization: `Bearer ${this.currentUserValue.token}`,
     });
     return this.http.put(
-      `${environment.APIURL}/cart/${productId}`,
+      `${environment.APIURL}/api/v1/cart/${productId}`,
       { quantity },
       {
         headers,
@@ -201,14 +201,14 @@ export class AuthService {
     const headers = new HttpHeaders({
       authorization: `Bearer ${this.currentUserValue.token}`,
     });
-    return this.http.delete(`${environment.APIURL}/cart`, { headers });
+    return this.http.delete(`${environment.APIURL}/api/v1/cart`, { headers });
   }
 
   deleteCartItem(productId: string): Observable<any> {
     const headers = new HttpHeaders({
       authorization: `Bearer ${this.currentUserValue.token}`,
     });
-    return this.http.delete(`${environment.APIURL}/cart/${productId}`, {
+    return this.http.delete(`${environment.APIURL}/api/v1/cart/${productId}`, {
       headers,
     });
   }
@@ -219,7 +219,7 @@ export class AuthService {
     });
 
     return this.http.post(
-      `${environment.APIURL}/reviews`,
+      `${environment.APIURL}/api/v1/reviews`,
       {
         title,
         ratings,
@@ -233,7 +233,7 @@ export class AuthService {
 
   getReviews(productId: string): Observable<any> {
     return this.http.get(
-      `${environment.APIURL}/reviews?productId=${productId}`
+      `${environment.APIURL}/api/v1/reviews?productId=${productId}`
     );
   }
   deleteReview(id: string): Observable<any> {
@@ -241,6 +241,6 @@ export class AuthService {
       authorization: `Bearer ${this.currentUserValue.token}`,
     });
 
-    return this.http.delete(`${environment.APIURL}/reviews/${id}`, { headers });
+    return this.http.delete(`${environment.APIURL}/api/v1/reviews/${id}`, { headers });
   }
 }

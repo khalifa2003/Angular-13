@@ -10,14 +10,14 @@ export class CategoryService {
   constructor(private http: HttpClient) {}
 
   getAllCategories(): Observable<any> {
-    return this.http.get(`${environment.APIURL}/categories`);
+    return this.http.get(`${environment.APIURL}/api/v1/categories`);
   }
 
   createCategory(formData: FormData): Observable<any> {
-    return this.http.post(`${environment.APIURL}/categories`, formData);
+    return this.http.post(`${environment.APIURL}/api/v1/categories`, formData);
   }
 
   deleteCategory(_id: string): Observable<any> {
-    return this.http.delete(`${environment.APIURL}/categories/${_id}`);
+    return this.http.delete(`${environment.APIURL}/api/v1/categories/${_id}`);
   }
 }

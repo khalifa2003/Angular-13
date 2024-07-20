@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  APIURL: 'http://localhost:8000/api/v1',
+  APIURL: 'http://localhost:8000',
   // APIURL:"https://node-js-git-main-khalifa2003s-projects.vercel.app/api/v1"
 };
 

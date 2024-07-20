@@ -7,16 +7,14 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class ProductService {
-  APIURL: string =
-    'https://node-js-git-main-khalifa2003s-projects.vercel.app/api/v1';
   constructor(private http: HttpClient) {}
 
   getAllProducts(): Observable<any> {
-    return this.http.get(`${environment.APIURL}/products`);
+    return this.http.get(`${environment.APIURL}/api/v1/products`);
   }
 
   getProductById(id: String | null): Observable<any> {
-    return this.http.get(`${environment.APIURL}/products/${id}`);
+    return this.http.get(`${environment.APIURL}/api/v1/products/${id}`);
   }
 
   searchProducts(params: any): Observable<any> {
@@ -26,14 +24,14 @@ export class ProductService {
         queryParams = queryParams.set(key, params[key]);
       });
     }
-    return this.http.get(`${environment.APIURL}/products`, {
+    return this.http.get(`${environment.APIURL}/api/v1/products`, {
       params: queryParams,
     });
   }
 
   createProduct(formData: FormData): Observable<any> {
     return this.http
-      .post(`${environment.APIURL}/products`, formData, {
+      .post(`${environment.APIURL}/api/v1/products`, formData, {
         reportProgress: true,
         observe: 'events',
       })
@@ -55,6 +53,6 @@ export class ProductService {
   }
 
   deleteProduct(Id: String) {
-    return this.http.delete(`${environment.APIURL}/products/${Id}`);
+    return this.http.delete(`${environment.APIURL}/api/v1/products/${Id}`);
   }
 }
