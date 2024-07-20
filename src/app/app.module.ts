@@ -92,6 +92,8 @@ import { ToastModule } from 'primeng/toast';
 import { RatingModule } from 'primeng/rating';
 import { GalleriaModule } from 'primeng/galleria';
 
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
 @NgModule({
   declarations: [
     AppComponent,
@@ -182,6 +184,8 @@ import { GalleriaModule } from 'primeng/galleria';
     ToastModule,
     RatingModule,
     GalleriaModule,
+    MessagesModule,
+    MessageModule,
   ],
   providers: [
     ProductService,

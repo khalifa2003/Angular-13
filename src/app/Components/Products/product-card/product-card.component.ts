@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { IProduct } from 'src/app/Models/iproduct';
 import { AuthService } from '../../../Services/auth.service';
 
@@ -7,13 +7,12 @@ import { AuthService } from '../../../Services/auth.service';
   templateUrl: './product-card.component.html',
   styleUrls: ['./product-card.component.css'],
 })
-export class ProductCardComponent implements OnInit {
+export class ProductCardComponent {
   @Input() product: IProduct = {} as IProduct;
   isInWishlist = false;
 
   constructor(private AuthService: AuthService) {}
 
-  ngOnInit(): void {}
   getProducts() {
     if (this.AuthService.isInWishlist(this.product._id)) {
       this.isInWishlist = true;
@@ -37,14 +36,25 @@ export class ProductCardComponent implements OnInit {
 
   showModal: boolean = false;
   addToCart() {
-    this.AuthService.addToCart(this.product._id).subscribe((res) => {
-      this.showModal = true;
-      setTimeout(() => {
-        this.showModal = false;
-      }, 3000);
-    });
+    if (this.AuthService.isUserLogged) {
+      this.AuthService.addToCart(this.product._id).subscribe((res) => {
+        this.showModal = true;
+        setTimeout(() => {
+          this.showModal = false;
+        }, 3000);
+      });
+    }
   }
   closeModal() {
     this.showModal = false;
+  }
+  show = false;
+
+  showAlert() {
+    this.show = true;
+  }
+
+  closeAlert() {
+    this.show = false;
   }
 }

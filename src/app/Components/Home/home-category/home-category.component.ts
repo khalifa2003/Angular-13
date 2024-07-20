@@ -53,7 +53,7 @@ export class HomeCategoryComponent implements OnInit {
 
   getProduct(item: ICategory) {
     this.router.navigate(['/products'], {
-      queryParams: { brand: item._id },
+      queryParams: { category: item._id },
     });
   }
 }

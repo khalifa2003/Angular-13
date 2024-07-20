@@ -14,10 +14,10 @@
         <div class="sub-title">Categories</div>
       </div>
     </ng-template>
-    <ng-template let-brand pTemplate="item">
-      <div class="product-item" (click)="getProduct(brand)">
+    <ng-template let-category pTemplate="item">
+      <div class="product-item" (click)="getProduct(category)">
         <a class="product-item-content all-card">
-          <img [src]="brand.image" class="category-card-img" alt="" />
+          <img [src]="category.image" class="category-card-img" alt="" />
         </a>
       </div>
     </ng-template>
