@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { BrandService } from 'src/app/Services/brand.service';
 import { AuthService } from '../../../Services/auth.service';
+import { IProduct } from 'src/app/Models/iproduct';
 
 @Component({
   selector: 'app-product-details',
@@ -8,18 +9,14 @@ import { AuthService } from '../../../Services/auth.service';
   styleUrls: ['./product-details.component.css'],
 })
 export class ProductDetailsComponent implements OnInit {
-  @Input() details: any;
+  @Input() details: IProduct = {} as IProduct;
   img: String = '';
   constructor(
     private brandService: BrandService,
     private AuthService: AuthService
   ) {}
 
-  ngOnInit(): void {
-    this.brandService.getBrand(this.details.brand).subscribe((res) => {
-      this.img = res.data.image;
-    });
-  }
+  ngOnInit(): void {}
 
   // ----------------------------------
   fullStars: number[] = [];
@@ -27,6 +24,9 @@ export class ProductDetailsComponent implements OnInit {
   emptyStars: number[] = [];
 
   ngOnChanges(): void {
+    this.brandService.getBrand(this.details.brand).subscribe((res) => {
+      this.img = res.data.image;
+    });
     this.updateStars();
   }
 

@@ -1,13 +1,17 @@
 <div class="container-lg p-3">
-  <div class="product-page col-12 p-3" *ngIf="iamgegallery">
+  <div class="product-page col-12 p-3" *ngIf="productDetails.images">
     <app-image-gallery
       class="col-xl-6 col-sm-12 col-md-12"
-      [images]="iamgegallery"
+      [images]="productDetails.images"
     ></app-image-gallery>
     <app-product-details
       class="col-xl-6 col-sm-12 col-md-12"
       [details]="productDetails"
     ></app-product-details>
   </div>
-  <app-review class="col-12 p-3" [productId]="productId"></app-review>
+  <app-review
+    class="col-12 p-3"
+    *ngIf="productDetails._id"
+    [productId]="productDetails._id"
+  ></app-review>
 </div>

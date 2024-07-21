@@ -8,40 +8,87 @@
 >
   <div class="form-group my-1">
     <input
+      [ngClass]="{ 'is-invalid': f['title'].touched && f['title'].invalid }"
+      placeholder="Product title"
       formControlName="title"
-      placeholder="Title"
-      class="input-form"
+      class="input"
       type="text"
+      id="title"
     />
+    <div
+      *ngIf="f['title'].touched && f['title'].invalid"
+      class="invalid-feedback"
+    >
+      <div *ngIf="f['title'].errors?.['required']">Product title Required</div>
+      <div *ngIf="f['title'].errors?.['minlength']">
+        Too Short Product Title
+      </div>
+    </div>
   </div>
 
   <div class="form-group my-1">
     <textarea
+      [ngClass]="{
+        'is-invalid': f['description'].touched && f['description'].invalid
+      }"
       placeholder="Product description"
       formControlName="description"
-      class="input-form"
+      class="input"
       id="description"
     ></textarea>
+    <div
+      *ngIf="f['description'].touched && f['description'].invalid"
+      class="invalid-feedback"
+    >
+      <div *ngIf="f['description'].errors?.['required']">
+        Product description Required
+      </div>
+      <div *ngIf="f['description'].errors?.['minlength']">
+        Too Short Product description
+      </div>
+    </div>
   </div>
 
   <div class="form-group my-1">
     <input
+      [ngClass]="{ 'is-invalid': f['price'].touched && f['price'].invalid }"
       placeholder="Product Price"
       formControlName="price"
-      class="input-form"
+      class="input"
       type="number"
       id="price"
     />
+    <div
+      *ngIf="f['price'].touched && f['price'].invalid"
+      class="invalid-feedback"
+    >
+      <div *ngIf="f['price'].errors?.['required']">Product Price Required</div>
+      <div *ngIf="f['price'].errors?.['max']">Fake Price</div>
+    </div>
   </div>
 
   <div class="form-group my-1">
     <input
+      [ngClass]="{
+        'is-invalid': f['quantity'].touched && f['quantity'].invalid
+      }"
       placeholder="Product quantity"
       formControlName="quantity"
-      class="input-form"
+      class="input"
       type="number"
       id="quantity"
+      required
     />
+    <div
+      *ngIf="f['quantity'].touched && f['quantity'].invalid"
+      class="invalid-feedback"
+    >
+      <div *ngIf="f['quantity'].errors?.['required']">
+        Product quantity Required
+      </div>
+      <div *ngIf="f['quantity'].errors?.['max']">Too Much quantity</div>
+      <div *ngIf="f['quantity'].errors?.['min']">Too Short quantity</div>
+    </div>
   </div>
 
   <div class="form-group my-1" *ngIf="listOfBrands.length > 0">
@@ -108,10 +155,11 @@
       <div class="w-100">
         <select
           [ngClass]="{
-            'is-invalid': f['subcategory'].touched && f['subcategory'].invalid
+            'is-invalid':
+              f['subcategories'].touched && f['subcategories'].invalid
           }"
           class="form-select"
-          formControlName="subcategory"
+          formControlName="subcategories"
           aria-label="Default select example"
         >
           <option
@@ -126,21 +174,21 @@
     </div>
   </div>
 
-  <div class="form-group my-1"></div>
-
-  <div formArrayName="images">
-    <div *ngFor="let img of getimages.controls; let i = index">
-      <input
-        [formControlName]="i"
-        class="form-control"
-        type="text"
-        [id]="'img' + i"
-      />
-
-      <button type="button" class="btn btn-default" (click)="addImg($event)">
-        +
-      </button>
-    </div>
+  <div
+    class="form-group my-1"
+    formArrayName="images"
+    *ngFor="let image of allImages.controls; let i = index"
+  >
+    <input
+      type="text"
+      [formControlName]="i"
+      class="form-control"
+      id="{{ 'userImage-' + i }}"
+      name="userImage"
+    />
+    <button type="button" class="btn btn-primary" (click)="addImage($event)">
+      +
+    </button>
   </div>
 
   <div class="d-flex justify-content-center mt-2">
@@ -153,7 +201,3 @@
     </button>
   </div>
 </form>
-
-<div>
-  {{ productForm.value | json }}
-</div>

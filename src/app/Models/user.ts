@@ -1,6 +1,7 @@
 import { Address } from './address';
 
 export interface User {
+  _id: string;
   fname: string;
   lname: string;
   slug?: string;

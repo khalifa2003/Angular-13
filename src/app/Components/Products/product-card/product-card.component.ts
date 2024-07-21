@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IProduct } from 'src/app/Models/iproduct';
 import { AuthService } from '../../../Services/auth.service';
 
@@ -34,27 +34,9 @@ export class ProductCardComponent {
     }
   }
 
-  showModal: boolean = false;
   addToCart() {
-    if (this.AuthService.isUserLogged) {
-      this.AuthService.addToCart(this.product._id).subscribe((res) => {
-        this.showModal = true;
-        setTimeout(() => {
-          this.showModal = false;
-        }, 3000);
-      });
-    }
-  }
-  closeModal() {
-    this.showModal = false;
-  }
-  show = false;
-
-  showAlert() {
-    this.show = true;
+    this.notifyParent.emit(this.product);
   }
 
-  closeAlert() {
-    this.show = false;
-  }
+  @Output() notifyParent: EventEmitter<IProduct> = new EventEmitter();
 }

@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { IProduct } from 'src/app/Models/iproduct';
+import { AuthService } from '../../../Services/auth.service';
 interface responsiveOptions {
   breakpoint: string;
   numVisible: number;
@@ -16,7 +17,7 @@ export class ProductsComponent {
 
   responsiveOptions: responsiveOptions[];
 
-  constructor() {
+  constructor(private AuthService: AuthService) {
     this.responsiveOptions = [
       {
         breakpoint: '600px',
@@ -39,5 +40,24 @@ export class ProductsComponent {
         numScroll: 5,
       },
     ];
+  }
+
+  product: IProduct = {} as IProduct;
+
+  addcart(value: IProduct) {
+    this.product = value;
+    console.log(value);
+    if (this.AuthService.isUserLogged) {
+      this.AuthService.addToCart(value._id).subscribe((res) => {
+        this.showModal = true;
+        setTimeout(() => {
+          this.showModal = false;
+        }, 3000);
+      });
+    }
+  }
+  showModal: boolean = false;
+  closeModal() {
+    this.showModal = false;
   }
 }

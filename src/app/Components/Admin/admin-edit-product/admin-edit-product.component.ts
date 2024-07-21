@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, switchMap } from 'rxjs';
 import { IBrand } from 'src/app/Models/ibrand';
 import { ICategory } from 'src/app/Models/icategory';
@@ -32,24 +32,20 @@ export class AdminEditProductComponent implements OnInit {
     private SubcategoryService: SubcategoryService,
     private BrandService: BrandService,
     private route: ActivatedRoute,
+    private router: Router,
     private fb: FormBuilder
   ) {}
   get f() {
     return this.productForm.controls;
   }
 
-  get getimages() {
-    return this.productForm?.get('images') as FormArray;
-  }
-  addImg(event: any) {
-    this.getimages.push(this.fb.control(''));
+  addImage(event: any) {
+    this.allImages.push(this.fb.control(''));
     event.target?.classList.add('d-none');
   }
-  onFileChange(event: any) {
-    const files = event.target.files;
-    for (let file of files) {
-      this.getimages.push(this.fb.control(file));
-    }
+
+  get allImages() {
+    return this.productForm.get('images') as FormArray;
   }
 
   onSubmit() {
@@ -63,14 +59,17 @@ export class AdminEditProductComponent implements OnInit {
       formData.append('quantity', values.quantity);
       formData.append('category', values.category);
       formData.append('brand', values.brand);
-      formData.append('subcategory', values.subcategory);
+      formData.append('subcategories', values.subcategories);
 
       values.images.forEach((image: File, index: number) => {
         formData.append(`images`, image);
       });
 
-      this.ProductService.createProduct(formData).subscribe((res) => {
-        console.log(res);
+      this.ProductService.updateProduct(
+        formData,
+        this.productDetails._id
+      ).subscribe((res) => {
+        this.router.navigate(['/admin/id/allproducts']);
       });
     }
   }
@@ -106,7 +105,7 @@ export class AdminEditProductComponent implements OnInit {
         quantity: [this.productDetails.quantity, Validators.required],
         category: [this.productDetails.category, Validators.required],
         brand: [this.productDetails.brand, Validators.required],
-        subcategory: [this.productDetails.subcategory, Validators.required],
+        subcategories: [this.productDetails.subcategories, Validators.required],
         images: this.fb.array(this.productDetails.images),
       });
     });

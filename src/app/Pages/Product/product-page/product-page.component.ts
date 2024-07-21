@@ -11,9 +11,6 @@ import { IProduct } from 'src/app/Models/iproduct';
 })
 export class ProductPageComponent implements OnInit {
   productDetails: IProduct = {} as IProduct;
-  iamgegallery: string[] = [];
-
-  productId: any;
   productDetails$: Observable<any> | undefined;
 
   constructor(
@@ -24,13 +21,11 @@ export class ProductPageComponent implements OnInit {
   ngOnInit(): void {
     this.productDetails$ = this.route.paramMap.pipe(
       switchMap((params) => {
-        this.productId = params.get('id');
-        return this.productService.getProductById(this.productId);
+        return this.productService.getProductById(params.get('id'));
       })
     );
     this.productDetails$.subscribe((res) => {
       this.productDetails = res.data;
-      this.iamgegallery = res.data.images;
     });
   }
 }

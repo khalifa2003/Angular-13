@@ -67,4 +67,5 @@ export class HomePageComponent implements OnInit {
         this.msi = res.data;
       });
   }
+
 }

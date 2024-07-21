@@ -77,7 +77,6 @@ export class AuthService {
     const headers = new HttpHeaders({
       authorization: `Bearer ${this.currentUserValue.token}`,
     });
-    console.log(`Bearer ${this.currentUserValue.token}`);
 
     return this.http.get(`${environment.APIURL}/users/getMe`, { headers });
   }
@@ -236,6 +235,7 @@ export class AuthService {
       `${environment.APIURL}/reviews?productId=${productId}`
     );
   }
+
   deleteReview(id: string): Observable<any> {
     const headers = new HttpHeaders({
       authorization: `Bearer ${this.currentUserValue.token}`,

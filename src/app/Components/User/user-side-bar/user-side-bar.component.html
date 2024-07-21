@@ -3,25 +3,25 @@
   <ul>
     <li>
       <a routerLink="/user/id/dashboard" routerLinkActive="active">
-        <i class="fa fa-home fa-2x"></i>
+        <i class="fa bi bi-card-checklist"></i>
         <span class="nav-text"> Dashboard </span>
       </a>
     </li>
     <li>
       <a routerLink="/user/id/profile" routerLinkActive="active">
-        <i class="fa fa-globe fa-2x"></i>
+        <i class="fa fa-solid fa-user"></i>
         <span class="nav-text"> Profile </span>
       </a>
     </li>
     <li>
       <a routerLink="/user/id/addresses" routerLinkActive="active">
-        <i class="fa fa-comments fa-2x"></i>
+        <i class="fa bi bi-geo-alt"></i>
         <span class="nav-text">Addresses </span>
       </a>
     </li>
     <li>
       <a routerLink="/user/id/favoriteproducts" routerLinkActive="active">
-        <i class="fa fa-camera-retro fa-2x"></i>
+        <i class="fa bi bi-heart-fill"></i>
         <span class="nav-text"> Favorite </span>
       </a>
     </li>
@@ -32,8 +32,8 @@
       </a>
     </li>
     <li>
-      <a routerLink="/user/id/dashboard">
-        <i class="fa fa-film fa-2x"></i>
+      <a (click)="logout()">
+        <i class="fa bi bi-box-arrow-right"></i>
         <span class="nav-text"> Logout </span>
       </a>
     </li>

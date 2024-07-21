@@ -17,9 +17,24 @@
     <ng-template let-product pTemplate="item">
       <div class="product-item">
         <div class="product-item-content">
-          <app-product-card [product]="product"></app-product-card>
+          <app-product-card
+            (notifyParent)="addcart($event)"
+            [product]="product"
+          ></app-product-card>
         </div>
       </div>
     </ng-template>
   </p-carousel>
+</div>
+<div class="modall" *ngIf="showModal">
+  <div class="modall-header">
+    <span class="modall-title">Product added to Cart</span>
+    <button class="close-btn" (click)="closeModal()">&times;</button>
+  </div>
+  <div class="modall-body">
+    <img [src]="product.images[0]" alt="" />
+    <a routerLink="/user/id/cart" style="text-decoration: none">{{
+      product.title
+    }}</a>
+  </div>
 </div>

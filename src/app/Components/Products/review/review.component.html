@@ -20,17 +20,20 @@
       </button>
     </div>
   </div>
-  <form (ngSubmit)="addReview()" #reviewForm="ngForm" class="review-form">
+  <form (ngSubmit)="addReview()" [formGroup]="reviewForm" class="review-form">
     <h3>Write a Review</h3>
     <label for="rating">Rating:</label>
-    <p-rating [(ngModel)]="newReview.rating" [cancel]="false"></p-rating>
+    <p-rating formControlName="score" [cancel]="false"></p-rating>
     <label for="comment">Comment:</label>
     <textarea
+      formControlName="title"
       id="comment"
       name="comment"
-      [(ngModel)]="newReview.comment"
       required
     ></textarea>
-    <button type="submit">Submit Review</button>
+    <button type="submit" [disabled]="reviewForm.invalid">
+      Submit Review
+    </button>
   </form>
 </div>
+{{ reviewForm.value | json }}

@@ -1,5 +1,8 @@
 import { Component, Input, SimpleChanges } from '@angular/core';
 import { AuthService } from '../../../Services/auth.service';
+import { User } from 'src/app/Models/user';
+import { Review } from 'src/app/Models/review';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-review',
@@ -7,27 +10,29 @@ import { AuthService } from '../../../Services/auth.service';
   styleUrls: ['./review.component.css'],
 })
 export class ReviewComponent {
-  constructor(private AuthService: AuthService) {}
-  @Input() productId: any;
-  reviewsList: any;
-  user: any;
+  @Input() productId: string = 'a';
+  reviewsList: Review[] = [];
+  user: User = {} as User;
+  reviewForm: FormGroup;
+
+  constructor(private AuthService: AuthService, private fb: FormBuilder) {
+    this.reviewForm = this.fb.group({
+      score: [0, Validators.required],
+      title: ['', Validators.required],
+    });
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     this.getReviews();
   }
 
-  newReview: any = { rating: 0, comment: '' };
-
   addReview() {
-    console.log(this.newReview.comment);
-    console.log(this.newReview.rating);
-
     this.AuthService.addReview(
-      this.newReview.comment,
-      this.newReview.rating,
+      this.reviewForm.value.title,
+      this.reviewForm.value.score,
       this.productId
     ).subscribe((res) => {
-      this.newReview = { rating: 0, comment: '' };
+      this.reviewForm.reset();
       this.getReviews();
     });
   }
@@ -35,7 +40,7 @@ export class ReviewComponent {
   getReviews() {
     this.AuthService.getReviews(this.productId).subscribe((res) => {
       this.reviewsList = res.data;
-    });
+    })
     this.AuthService.getMe().subscribe((res) => {
       this.user = res.data;
     });
