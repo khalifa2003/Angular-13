@@ -50,23 +50,8 @@ export class AdminEditProductComponent implements OnInit {
 
   onSubmit() {
     if (this.productForm?.valid) {
-      const formData: FormData = new FormData();
-      const values = this.productForm.value;
-
-      formData.append('title', values.title);
-      formData.append('description', values.description);
-      formData.append('price', values.price);
-      formData.append('quantity', values.quantity);
-      formData.append('category', values.category);
-      formData.append('brand', values.brand);
-      formData.append('subcategories', values.subcategories);
-
-      values.images.forEach((image: File, index: number) => {
-        formData.append(`images`, image);
-      });
-
       this.ProductService.updateProduct(
-        formData,
+        this.productForm.value,
         this.productDetails._id
       ).subscribe((res) => {
         this.router.navigate(['/admin/id/allproducts']);
