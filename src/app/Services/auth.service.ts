@@ -25,10 +25,12 @@ export class AuthService {
   }
 
   get isUserLogged(): boolean {
+    console.log( localStorage.getItem('currentUser'));
     return this.currentUserValue.data?.fname ? true : false;
   }
 
   isAuthenticated(): boolean {
+
     const token = localStorage.getItem('currentUser');
     return !!token;
   }
